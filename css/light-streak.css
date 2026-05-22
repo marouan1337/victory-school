@@ -1,0 +1,250 @@
+/* Light Streak Animation - Red Theme */
+
+/* Container for light streaks */
+.light-streak-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Individual light streak */
+.light-streak {
+    position: absolute;
+    width: 2px;
+    height: 150px;
+    background: linear-gradient(
+        to bottom,
+        rgba(220, 38, 38, 0) 0%,
+        rgba(220, 38, 38, 0.8) 50%,
+        rgba(220, 38, 38, 0) 100%
+    );
+    opacity: 0;
+    animation: streak 3s linear infinite;
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.5),
+                0 0 20px rgba(220, 38, 38, 0.3),
+                0 0 30px rgba(220, 38, 38, 0.1);
+}
+
+/* Streak animation - diagonal movement */
+@keyframes streak {
+    0% {
+        transform: translateX(-100px) translateY(-100px) rotate(45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px)) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* Different streak variations */
+.light-streak:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 3s;
+}
+
+.light-streak:nth-child(2) {
+    left: 25%;
+    animation-delay: 0.5s;
+    animation-duration: 3.5s;
+}
+
+.light-streak:nth-child(3) {
+    left: 40%;
+    animation-delay: 1s;
+    animation-duration: 4s;
+}
+
+.light-streak:nth-child(4) {
+    left: 55%;
+    animation-delay: 1.5s;
+    animation-duration: 3.2s;
+}
+
+.light-streak:nth-child(5) {
+    left: 70%;
+    animation-delay: 2s;
+    animation-duration: 3.8s;
+}
+
+.light-streak:nth-child(6) {
+    left: 85%;
+    animation-delay: 2.5s;
+    animation-duration: 3.3s;
+}
+
+/* Thicker streaks for variety */
+.light-streak.thick {
+    width: 3px;
+    height: 200px;
+    background: linear-gradient(
+        to bottom,
+        rgba(239, 68, 68, 0) 0%,
+        rgba(239, 68, 68, 0.9) 50%,
+        rgba(239, 68, 68, 0) 100%
+    );
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.6),
+                0 0 30px rgba(239, 68, 68, 0.4),
+                0 0 45px rgba(239, 68, 68, 0.2);
+}
+
+/* Slower streaks */
+.light-streak.slow {
+    animation-duration: 5s;
+}
+
+/* Faster streaks */
+.light-streak.fast {
+    animation-duration: 2s;
+}
+
+/* Ambient glow effect */
+.light-streak-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at center,
+        rgba(220, 38, 38, 0.03) 0%,
+        rgba(220, 38, 38, 0.01) 50%,
+        transparent 100%
+    );
+    animation: pulse-glow 8s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+/* Ensure page content stays above streaks */
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Special effect for hero sections */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section .light-streak-container {
+    position: absolute;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .light-streak {
+        width: 1.5px;
+        height: 100px;
+    }
+    
+    .light-streak.thick {
+        width: 2px;
+        height: 130px;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .light-streak {
+        animation: none;
+        opacity: 0.1;
+    }
+    
+    .light-streak-container::before {
+        animation: none;
+    }
+}
+
+/* Alternative: Horizontal streaks */
+.light-streak.horizontal {
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        rgba(220, 38, 38, 0) 0%,
+        rgba(220, 38, 38, 0.8) 50%,
+        rgba(220, 38, 38, 0) 100%
+    );
+    animation: streak-horizontal 4s linear infinite;
+}
+
+@keyframes streak-horizontal {
+    0% {
+        transform: translateX(-200px) translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(calc(100vw + 200px)) translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+/* Particle effect for extra sparkle */
+.light-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(239, 68, 68, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.8),
+                0 0 20px rgba(239, 68, 68, 0.4);
+    animation: particle-float 6s ease-in-out infinite;
+    opacity: 0;
+}
+
+@keyframes particle-float {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(50px);
+        opacity: 0;
+    }
+}
+
+.light-particle:nth-child(odd) {
+    animation-delay: 1s;
+    left: 20%;
+}
+
+.light-particle:nth-child(even) {
+    animation-delay: 3s;
+    left: 80%;
+}

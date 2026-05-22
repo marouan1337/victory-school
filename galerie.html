@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie Photos - École Victory</title>
+    <meta name="description" content="Découvrez en images la vie à l'École Victory - événements, activités, installations et moments mémorables">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/light-streak.css">
+    <link rel="stylesheet" href="css/cambridge-float.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Gallery Item Enhancements */
+        .gallery-item {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+        .gallery-item img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+        
+        /* Filter Button Enhancements */
+        .filter-btn {
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(185, 28, 28, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .filter-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        .filter-btn.active {
+            background: linear-gradient(135deg, #991b1b 0%, #b91c1c 100%);
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(185, 28, 28, 0.5);
+            transform: translateY(-2px);
+        }
+        .filter-btn:not(.active) {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            color: #374151;
+        }
+        .filter-btn:not(.active):hover {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            color: #991b1b;
+            transform: translateY(-2px);
+        }
+        
+        /* Section Badge */
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, rgba(185, 28, 28, 0.1) 0%, rgba(220, 38, 38, 0.05) 100%);
+            border: 1px solid rgba(185, 28, 28, 0.2);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #991b1b;
+            margin-bottom: 1rem;
+        }
+        
+        /* Enhanced Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Image Counter Badge */
+        .image-counter {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+        
+        /* Category Badge on Images */
+        .category-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: linear-gradient(135deg, rgba(185, 28, 28, 0.9) 0%, rgba(220, 38, 38, 0.9) 100%);
+            color: white;
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .gallery-item:hover .category-badge {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Hero Pattern */
+        .hero-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+        
+        /* Sticky Filter Shadow */
+        .sticky-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        /* Blob Animation */
+        @keyframes blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar will be injected here -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-red-900 via-red-800 to-red-700 text-white py-16 sm:py-20 md:py-24 overflow-hidden hero-pattern">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 -left-20 w-72 h-72 bg-red-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+            <div class="absolute top-1/3 -right-20 w-96 h-96 bg-amber-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+            <div class="absolute -bottom-8 left-1/2 w-80 h-80 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl opacity-25 animate-blob animation-delay-4000"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full mb-6" data-aos="fade-down">
+                <svg class="w-5 h-5 text-amber-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+                <span class="text-sm font-semibold text-white">Nos Plus Beaux Moments</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8" data-aos="fade-down" data-aos-delay="100">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-red-50 to-amber-100">
+                    Galerie Photos
+                </span>
+            </h1>
+            <p class="text-lg sm:text-xl md:text-2xl text-red-50 max-w-3xl mx-auto px-4 leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                Découvrez la vie à l'École Victory à travers nos moments les plus mémorables
+            </p>
+            
+            <!-- Stats -->
+            <div class="flex flex-wrap justify-center gap-4 sm:gap-8 mt-10 sm:mt-12" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4 min-w-[140px]">
+                    <div class="text-3xl sm:text-4xl font-bold text-white mb-1">50+</div>
+                    <div class="text-sm text-red-100">Photos</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4 min-w-[140px]">
+                    <div class="text-3xl sm:text-4xl font-bold text-white mb-1">5</div>
+                    <div class="text-sm text-red-100">Catégories</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4 min-w-[140px]">
+                    <div class="text-3xl sm:text-4xl font-bold text-white mb-1">2024</div>
+                    <div class="text-sm text-red-100">Année</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce" data-aos="fade-up" data-aos-delay="400">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="bg-white/80 backdrop-blur-lg sticky-shadow sticky top-16 z-40 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 py-5 sm:py-7">
+                <button class="filter-btn active px-4 sm:px-5 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full text-xs sm:text-sm md:text-base font-semibold transition-all duration-300 flex items-center gap-2" data-filter="all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                    </svg>
+                    <span>Toutes</span>
+                </button>
+                <button class="filter-btn px-4 sm:px-5 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full text-xs sm:text-sm md:text-base font-semibold transition-all duration-300 flex items-center gap-2" data-filter="cambridge">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span>Cambridge</span>
+                </button>
+                <button class="filter-btn px-4 sm:px-5 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full text-xs sm:text-sm md:text-base font-semibold transition-all duration-300 flex items-center gap-2" data-filter="sciences">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                    </svg>
+                    <span>Sciences</span>
+                </button>
+                <button class="filter-btn px-4 sm:px-5 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full text-xs sm:text-sm md:text-base font-semibold transition-all duration-300 flex items-center gap-2" data-filter="events">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span>Événements</span>
+                </button>
+                <button class="filter-btn px-4 sm:px-5 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full text-xs sm:text-sm md:text-base font-semibold transition-all duration-300 flex items-center gap-2" data-filter="facilities">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    <span>Installations</span>
+                </button>
+                <button class="filter-btn px-4 sm:px-5 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full text-xs sm:text-sm md:text-base font-semibold transition-all duration-300 flex items-center gap-2" data-filter="trips">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
+                    </svg>
+                    <span>Sorties</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Gallery -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
+        
+        <!-- Cambridge Exams Section -->
+        <section id="cambridge-section" class="mb-20" data-aos="fade-up">
+            <div class="mb-12">
+                <!-- Section Badge -->
+                <div class="section-badge" data-aos="fade-right">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                    <span>Certifications Internationales</span>
+                </div>
+                
+                <div class="flex items-center gap-3 sm:gap-4 mb-4">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/30">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-1">Examens Cambridge</h2>
+                        <p class="text-sm sm:text-base text-gray-600">Nos élèves en préparation et passage des examens officiels</p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div class="gallery-item" data-category="cambridge">
+                    <div class="relative overflow-hidden rounded-2xl shadow-xl group cursor-pointer bg-white">
+                        <div class="category-badge">Cambridge</div>
+                        <img src="images/cambredge/472612598_603128835646728_6783913076134908689_n.jpg" alt="Examen Cambridge" class="w-full h-72 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="text-xs font-semibold text-blue-300 uppercase tracking-wide">Certification</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-1">Session d'Examen</h3>
+                                <p class="text-sm text-gray-200">Concentration et détermination</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="cambridge">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/cambredge/472713240_603128875646724_1016656533823232809_n.jpg" alt="Examen Cambridge" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Salle d'Examen</h3>
+                                <p class="text-sm text-gray-200">Conditions officielles Cambridge</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="cambridge">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/cambredge/472815417_604220788870866_6398668283300767381_n.jpg" alt="Préparation Cambridge" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Préparation Intensive</h3>
+                                <p class="text-sm text-gray-200">Nos élèves se préparent</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sciences & Biology Section -->
+        <section id="sciences-section" class="mb-20" data-aos="fade-up">
+            <div class="mb-12">
+                <div class="section-badge" data-aos="fade-right">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7 2a1 1 0 00-.707 1.707L7 4.414v3.758a1 1 0 01-.293.707l-4 4C.817 14.769 2.156 18 4.828 18h10.343c2.673 0 4.012-3.231 2.122-5.121l-4-4A1 1 0 0113 8.172V4.414l.707-.707A1 1 0 0013 2H7zm2 6.172V4h2v4.172a3 3 0 00.879 2.12l1.027 1.028a4 4 0 00-2.171.102l-.47.156a4 4 0 01-2.53 0l-.563-.187a1.993 1.993 0 00-.114-.035l1.063-1.063A3 3 0 009 8.172z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Apprentissage Scientifique</span>
+                </div>
+                
+                <div class="flex items-center gap-3 sm:gap-4 mb-4">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-green-600 to-green-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-green-500/30">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-1">Sciences & Biologie</h2>
+                        <p class="text-sm sm:text-base text-gray-600">Laboratoires, expériences et découvertes scientifiques</p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div class="gallery-item" data-category="sciences">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/472546048_604221195537492_4509814991155522640_n.jpg" alt="Laboratoire de biologie" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Anatomie Humaine</h3>
+                                <p class="text-sm text-gray-200">Matériel pédagogique moderne</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="sciences">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/sortie_boiogie/472569158_604220908870854_7509257047995938842_n.jpg" alt="Sortie biologie" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Sortie Biologie</h3>
+                                <p class="text-sm text-gray-200">Étude de la nature sur le terrain</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events & Celebrations Section -->
+        <section id="events-section" class="mb-20" data-aos="fade-up">
+            <div class="mb-12">
+                <div class="section-badge" data-aos="fade-right">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm9 4a1 1 0 10-2 0v6a1 1 0 102 0V7zm-3 2a1 1 0 10-2 0v4a1 1 0 102 0V9zm-3 3a1 1 0 10-2 0v1a1 1 0 102 0v-1z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Vie Scolaire Dynamique</span>
+                </div>
+                
+                <div class="flex items-center gap-3 sm:gap-4 mb-4">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-purple-600 to-purple-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-purple-500/30">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-1">Événements & Fêtes</h2>
+                        <p class="text-sm sm:text-base text-gray-600">Célébrations, spectacles et moments festifs</p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div class="gallery-item" data-category="events">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/472517763_604220912204187_8682324517843623217_n.jpg" alt="Fête scolaire" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Fête de Fin d'Année</h3>
+                                <p class="text-sm text-gray-200">Célébration avec nos élèves</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="events">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/514254002_784855484140728_7979378882014793080_n.jpg" alt="Salle de réception" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Salle de Réception</h3>
+                                <p class="text-sm text-gray-200">Espace événementiel moderne</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="events">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/542754609_784857177473892_5890139657363273405_n.jpg" alt="Spectacle culturel" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Spectacle Culturel</h3>
+                                <p class="text-sm text-gray-200">Costumes traditionnels marocains</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="events">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/542754940_784857220807221_1761431227153822590_n.jpg" alt="Performance artistique" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Performance Artistique</h3>
+                                <p class="text-sm text-gray-200">Spectacle scolaire</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="events">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/544819431_784857240807219_6212508964917602889_n.jpg" alt="Cérémonie scolaire" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Cérémonie Officielle</h3>
+                                <p class="text-sm text-gray-200">Événement spécial</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facilities Section -->
+        <section id="facilities-section" class="mb-20" data-aos="fade-up">
+            <div class="mb-12">
+                <div class="section-badge" data-aos="fade-right">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Équipements Modernes</span>
+                </div>
+                
+                <div class="flex items-center gap-3 sm:gap-4 mb-4">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-amber-600 to-amber-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-amber-500/30">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-1">Nos Installations</h2>
+                        <p class="text-sm sm:text-base text-gray-600">Infrastructures modernes et équipements de qualité</p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div class="gallery-item" data-category="facilities">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/505119664_718139530812324_1132912206099432546_n.jpg" alt="Salle de classe" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Salle de Classe Moderne</h3>
+                                <p class="text-sm text-gray-200">Équipement audiovisuel complet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="facilities">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/472699263_604220902204188_4297177887418540531_n.jpg" alt="Activité en classe" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Activité Pédagogique</h3>
+                                <p class="text-sm text-gray-200">Apprentissage interactif</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="facilities">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/472715141_604221228870822_1447342360936587395_n.jpg" alt="Espace éducatif" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Espace d'Apprentissage</h3>
+                                <p class="text-sm text-gray-200">Environnement moderne</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="facilities">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/506531336_718137154145895_1564319252014019951_n.jpg" alt="Infrastructure" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Nos Installations</h3>
+                                <p class="text-sm text-gray-200">Équipements de qualité</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="facilities">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/507133513_721297240496553_4071658832087622332_n.jpg" alt="Salle d'activités" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Salle Polyvalente</h3>
+                                <p class="text-sm text-gray-200">Espace multifonctionnel</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="facilities">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/546870417_789190563707220_4891712557350650177_n.jpg" alt="Environnement scolaire" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Cadre Éducatif</h3>
+                                <p class="text-sm text-gray-200">Ambiance propice à l'apprentissage</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="facilities">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/546903761_789190480373895_1593868785548620276_n.jpg" alt="Espace scolaire" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Espaces Éducatifs</h3>
+                                <p class="text-sm text-gray-200">Locaux bien équipés</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="facilities">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/547245002_789190427040567_1419814395580955857_n.jpg" alt="Infrastructure moderne" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Bâtiments Modernes</h3>
+                                <p class="text-sm text-gray-200">Architecture contemporaine</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="facilities">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/547408431_789190703707206_7618586580586520142_n.jpg" alt="Locaux scolaires" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Nos Locaux</h3>
+                                <p class="text-sm text-gray-200">Espaces confortables</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="facilities">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
+                        <img src="images/new_images/547622954_789190373707239_1626134712875621426_n.jpg" alt="Équipements scolaires" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="text-lg font-bold">Équipements</h3>
+                                <p class="text-sm text-gray-200">Matériel de pointe</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Photos Grid (Hidden by default, shown when "all" is selected) -->
+        <section id="all-photos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <!-- Photos will be dynamically shown/hidden based on filter -->
+        </section>
+
+    </main>
+
+    <!-- Enhanced Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <!-- Close Button -->
+        <button id="close-lightbox" class="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 group">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 hover:bg-red-600 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:rotate-90">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </div>
+        </button>
+        
+        <!-- Previous Button -->
+        <button id="prev-lightbox" class="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-10 group">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 hover:bg-red-600 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-x-1">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </div>
+        </button>
+        
+        <!-- Next Button -->
+        <button id="next-lightbox" class="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-10 group">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 hover:bg-red-600 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:translate-x-1">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </div>
+        </button>
+        
+        <!-- Image Counter -->
+        <div class="image-counter">
+            <span id="current-image">1</span> / <span id="total-images">1</span>
+        </div>
+        
+        <img id="lightbox-img" class="lightbox-content" src="" alt="">
+    </div>
+
+    <!-- Footer will be injected here -->
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const sections = {
+            'cambridge': document.getElementById('cambridge-section'),
+            'sciences': document.getElementById('sciences-section'),
+            'events': document.getElementById('events-section'),
+            'facilities': document.getElementById('facilities-section'),
+            'trips': document.getElementById('trips-section')
+        };
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-red-700', 'text-white');
+                    b.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                });
+                btn.classList.add('active', 'bg-red-700', 'text-white');
+                btn.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+
+                // Filter sections
+                const filter = btn.getAttribute('data-filter');
+                
+                if (filter === 'all') {
+                    Object.values(sections).forEach(section => {
+                        if (section) section.style.display = 'block';
+                    });
+                } else {
+                    Object.entries(sections).forEach(([key, section]) => {
+                        if (section) {
+                            section.style.display = key === filter ? 'block' : 'none';
+                        }
+                    });
+                }
+            });
+        });
+
+        // Enhanced Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeLightbox = document.getElementById('close-lightbox');
+        const currentImageSpan = document.getElementById('current-image');
+        const totalImagesSpan = document.getElementById('total-images');
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        let currentIndex = 0;
+        let allImages = [];
+
+        // Collect all images
+        galleryItems.forEach((img, index) => {
+            allImages.push(img.src);
+            img.addEventListener('click', () => {
+                currentIndex = index;
+                openLightbox(img.src);
+            });
+        });
+
+        // Update total images count
+        if (totalImagesSpan) {
+            totalImagesSpan.textContent = allImages.length;
+        }
+
+        function updateImageCounter() {
+            if (currentImageSpan) {
+                currentImageSpan.textContent = currentIndex + 1;
+            }
+        }
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            updateImageCounter();
+        }
+
+        function closeLightboxFunc() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        closeLightbox.addEventListener('click', closeLightboxFunc);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightboxFunc();
+        });
+
+        // Navigation
+        document.getElementById('prev-lightbox').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
+            lightboxImg.src = allImages[currentIndex];
+            updateImageCounter();
+        });
+
+        document.getElementById('next-lightbox').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % allImages.length;
+            lightboxImg.src = allImages[currentIndex];
+            updateImageCounter();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightboxFunc();
+            if (e.key === 'ArrowLeft') document.getElementById('prev-lightbox').click();
+            if (e.key === 'ArrowRight') document.getElementById('next-lightbox').click();
+        });
+    </script>
+    
+    <!-- Light Streak Animation -->
+    <script src="js/light-streak.js"></script>
+    
+    <!-- Cambridge Floating Ad -->
+    <script src="js/cambridge-float.js"></script>
+</body>
+</html>

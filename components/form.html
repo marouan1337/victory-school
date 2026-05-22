@@ -1,0 +1,439 @@
+<!-- Form Component -->
+<form class="space-y-6 form-component" novalidate>
+    <div class="form-success-message hidden p-4 mb-4 text-green-700 bg-green-100 rounded-lg">
+        <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span class="message-content"></span>
+        </div>
+    </div>
+    
+    <div class="form-error-message hidden p-4 mb-4 text-red-700 bg-red-100 rounded-lg">
+        <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+            </svg>
+            <span class="message-content"></span>
+        </div>
+    </div>
+    
+    <div class="form-fields space-y-4">
+        <!-- Form fields will be inserted here -->
+    </div>
+    
+    <div class="form-actions">
+        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-800 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
+            Envoyer
+        </button>
+    </div>
+    
+    <div class="form-footer text-sm text-gray-500 text-center mt-4">
+        <!-- Additional form footer content will be inserted here -->
+    </div>
+</form>
+
+<!-- Form Field Templates -->
+<template id="form-field-text">
+    <div class="form-group">
+        <label class="block text-sm font-medium text-gray-700 mb-1"></label>
+        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring focus:ring-red-200 focus:ring-opacity-50 transition duration-150 ease-in-out sm:text-sm" required>
+        <div class="form-error text-red-600 text-xs mt-1 hidden"></div>
+    </div>
+</template>
+
+<template id="form-field-email">
+    <div class="form-group">
+        <label class="block text-sm font-medium text-gray-700 mb-1"></label>
+        <input type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring focus:ring-red-200 focus:ring-opacity-50 transition duration-150 ease-in-out sm:text-sm" required>
+        <div class="form-error text-red-600 text-xs mt-1 hidden"></div>
+    </div>
+</template>
+
+<template id="form-field-tel">
+    <div class="form-group">
+        <label class="block text-sm font-medium text-gray-700 mb-1"></label>
+        <input type="tel" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring focus:ring-red-200 focus:ring-opacity-50 transition duration-150 ease-in-out sm:text-sm" required>
+        <div class="form-error text-red-600 text-xs mt-1 hidden"></div>
+    </div>
+</template>
+
+<template id="form-field-select">
+    <div class="form-group">
+        <label class="block text-sm font-medium text-gray-700 mb-1"></label>
+        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring focus:ring-red-200 focus:ring-opacity-50 transition duration-150 ease-in-out sm:text-sm" required>
+            <option value="">Sélectionner une option</option>
+        </select>
+        <div class="form-error text-red-600 text-xs mt-1 hidden"></div>
+    </div>
+</template>
+
+<template id="form-field-textarea">
+    <div class="form-group">
+        <label class="block text-sm font-medium text-gray-700 mb-1"></label>
+        <textarea rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring focus:ring-red-200 focus:ring-opacity-50 transition duration-150 ease-in-out sm:text-sm" required></textarea>
+        <div class="form-error text-red-600 text-xs mt-1 hidden"></div>
+    </div>
+</template>
+
+<template id="form-field-checkbox">
+    <div class="form-group flex items-start">
+        <div class="flex items-center h-5">
+            <input type="checkbox" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
+        </div>
+        <div class="ml-3 text-sm">
+            <label class="font-medium text-gray-700"></label>
+            <p class="text-gray-500"></p>
+        </div>
+        <div class="form-error text-red-600 text-xs mt-1 hidden"></div>
+    </div>
+</template>
+
+<template id="form-field-radio">
+    <div class="form-group">
+        <label class="block text-sm font-medium text-gray-700 mb-2"></label>
+        <div class="space-y-2 radio-options">
+            <!-- Radio options will be inserted here -->
+        </div>
+        <div class="form-error text-red-600 text-xs mt-1 hidden"></div>
+    </div>
+</template>
+
+<template id="form-field-file">
+    <div class="form-group">
+        <label class="block text-sm font-medium text-gray-700 mb-1"></label>
+        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+            <div class="space-y-1 text-center">
+                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <div class="flex text-sm text-gray-600">
+                    <label class="relative cursor-pointer bg-white rounded-md font-medium text-red-600 hover:text-red-500 focus-within:outline-none">
+                        <span>Télécharger un fichier</span>
+                        <input type="file" class="sr-only">
+                    </label>
+                    <p class="pl-1">ou glisser-déposer</p>
+                </div>
+                <p class="text-xs text-gray-500">
+                    PNG, JPG, PDF jusqu'à 10MB
+                </p>
+            </div>
+        </div>
+        <div class="form-error text-red-600 text-xs mt-1 hidden"></div>
+    </div>
+</template>
+
+<script>
+// Form component functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Form class
+    class Form {
+        constructor(formElement) {
+            this.form = formElement;
+            this.fields = [];
+            this.initialize();
+        }
+        
+        initialize() {
+            // Initialize form validation
+            this.form.addEventListener('submit', this.handleSubmit.bind(this));
+            
+            // Initialize form fields
+            this.initializeFields();
+            
+            // Add live validation on blur
+            this.form.querySelectorAll('input, select, textarea').forEach(field => {
+                field.addEventListener('blur', () => this.validateField(field));
+                field.addEventListener('input', () => this.clearFieldError(field));
+            });
+        }
+        
+        initializeFields() {
+            // Initialize any dynamic fields
+            this.form.querySelectorAll('[data-form-field]').forEach(fieldEl => {
+                const fieldType = fieldEl.dataset.formField;
+                const fieldOptions = {
+                    name: fieldEl.dataset.name || '',
+                    label: fieldEl.dataset.label || '',
+                    placeholder: fieldEl.dataset.placeholder || '',
+                    required: fieldEl.hasAttribute('required'),
+                    value: fieldEl.dataset.value || '',
+                    options: fieldEl.dataset.options ? JSON.parse(fieldEl.dataset.options) : [],
+                    helpText: fieldEl.dataset.helpText || ''
+                };
+                
+                this.addField(fieldType, fieldOptions, fieldEl);
+            });
+        }
+        
+        addField(type, options, targetElement = null) {
+            const template = document.getElementById(`form-field-${type}`);
+            if (!template) {
+                console.error(`Form field template not found: form-field-${type}`);
+                return null;
+            }
+            
+            const fieldFragment = template.content.cloneNode(true);
+            const fieldContainer = fieldFragment.firstElementChild;
+            
+            // Set field properties
+            const label = fieldContainer.querySelector('label');
+            if (label) {
+                label.textContent = options.label;
+                if (options.required) {
+                    label.innerHTML += ' <span class="text-red-600">*</span>';
+                }
+            }
+            
+            const input = fieldContainer.querySelector('input, select, textarea');
+            if (input) {
+                input.name = options.name;
+                input.required = options.required;
+                
+                if (options.placeholder) {
+                    input.placeholder = options.placeholder;
+                }
+                
+                if (options.value) {
+                    input.value = options.value;
+                }
+                
+                // Handle select options
+                if (type === 'select' && options.options && options.options.length) {
+                    const select = fieldContainer.querySelector('select');
+                    options.options.forEach(option => {
+                        const optionEl = document.createElement('option');
+                        optionEl.value = option.value;
+                        optionEl.textContent = option.label;
+                        if (option.selected) {
+                            optionEl.selected = true;
+                        }
+                        select.appendChild(optionEl);
+                    });
+                }
+                
+                // Handle radio options
+                if (type === 'radio' && options.options && options.options.length) {
+                    const radioContainer = fieldContainer.querySelector('.radio-options');
+                    radioContainer.innerHTML = '';
+                    
+                    options.options.forEach((option, index) => {
+                        const id = `${options.name}-${index}`;
+                        const div = document.createElement('div');
+                        div.className = 'flex items-center';
+                        div.innerHTML = `
+                            <input id="${id}" name="${options.name}" type="radio" 
+                                   value="${option.value}" 
+                                   class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300"
+                                   ${option.checked ? 'checked' : ''}>
+                            <label for="${id}" class="ml-2 block text-sm text-gray-700">
+                                ${option.label}
+                            </label>
+                        `;
+                        radioContainer.appendChild(div);
+                    });
+                }
+                
+                // Handle checkbox help text
+                if (type === 'checkbox') {
+                    const helpText = fieldContainer.querySelector('.text-gray-500');
+                    if (helpText && options.helpText) {
+                        helpText.textContent = options.helpText;
+                    } else if (helpText) {
+                        helpText.remove();
+                    }
+                }
+            }
+            
+            // Insert or replace the field
+            if (targetElement) {
+                targetElement.replaceWith(fieldContainer);
+            } else {
+                this.form.querySelector('.form-fields').appendChild(fieldContainer);
+            }
+            
+            // Store reference to the field
+            this.fields.push({
+                name: options.name,
+                element: fieldContainer,
+                type: type,
+                required: options.required
+            });
+            
+            return fieldContainer;
+        }
+        
+        validateField(field) {
+            if (!field.required && !field.value.trim()) {
+                return true; // Not required and empty is valid
+            }
+            
+            const fieldContainer = field.closest('.form-group');
+            const errorEl = fieldContainer.querySelector('.form-error');
+            
+            // Clear previous error
+            this.clearFieldError(field);
+            
+            // Check required
+            if (field.required && !field.value.trim()) {
+                this.showError(field, 'Ce champ est requis');
+                return false;
+            }
+            
+            // Validate email
+            if (field.type === 'email' && field.value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(field.value)) {
+                    this.showError(field, 'Veuillez entrer une adresse email valide');
+                    return false;
+                }
+            }
+            
+            // Validate phone
+            if (field.type === 'tel' && field.value) {
+                const phoneRegex = /^[0-9\s\-\+\(\)]{10,20}$/;
+                if (!phoneRegex.test(field.value)) {
+                    this.showError(field, 'Veuillez entrer un numéro de téléphone valide');
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+        
+        showError(field, message) {
+            const fieldContainer = field.closest('.form-group');
+            if (!fieldContainer) return;
+            
+            const errorEl = fieldContainer.querySelector('.form-error');
+            if (errorEl) {
+                errorEl.textContent = message;
+                errorEl.classList.remove('hidden');
+                field.classList.add('border-red-500');
+                field.classList.remove('border-gray-300');
+            }
+        }
+        
+        clearFieldError(field) {
+            const fieldContainer = field.closest('.form-group');
+            if (!fieldContainer) return;
+            
+            const errorEl = fieldContainer.querySelector('.form-error');
+            if (errorEl) {
+                errorEl.textContent = '';
+                errorEl.classList.add('hidden');
+                field.classList.remove('border-red-500');
+                field.classList.add('border-gray-300');
+            }
+        }
+        
+        showSuccessMessage(message) {
+            const successEl = this.form.querySelector('.form-success-message');
+            if (successEl) {
+                const messageEl = successEl.querySelector('.message-content');
+                if (messageEl) {
+                    messageEl.textContent = message;
+                }
+                successEl.classList.remove('hidden');
+                
+                // Scroll to show the message
+                successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+                // Hide after 5 seconds
+                setTimeout(() => {
+                    successEl.classList.add('hidden');
+                }, 5000);
+            }
+        }
+        
+        showErrorMessage(message) {
+            const errorEl = this.form.querySelector('.form-error-message');
+            if (errorEl) {
+                const messageEl = errorEl.querySelector('.message-content');
+                if (messageEl) {
+                    messageEl.textContent = message;
+                }
+                errorEl.classList.remove('hidden');
+                
+                // Scroll to show the message
+                errorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+        
+        handleSubmit(event) {
+            event.preventDefault();
+            
+            // Validate all fields
+            let isValid = true;
+            const formData = {};
+            
+            this.form.querySelectorAll('input, select, textarea').forEach(field => {
+                if (!this.validateField(field)) {
+                    isValid = false;
+                }
+                
+                // Collect form data
+                if (field.name) {
+                    if (field.type === 'checkbox') {
+                        formData[field.name] = field.checked;
+                    } else if (field.type === 'radio') {
+                        if (field.checked) {
+                            formData[field.name] = field.value;
+                        }
+                    } else if (field.type === 'file') {
+                        formData[field.name] = field.files;
+                    } else {
+                        formData[field.name] = field.value;
+                    }
+                }
+            });
+            
+            if (!isValid) {
+                this.showErrorMessage('Veuillez corriger les erreurs dans le formulaire.');
+                return;
+            }
+            
+            // Form is valid, handle submission
+            this.submitForm(formData);
+        }
+        
+        async submitForm(formData) {
+            // Show loading state
+            const submitButton = this.form.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Envoi en cours...';
+            
+            try {
+                // Replace with your actual form submission logic
+                console.log('Form data:', formData);
+                
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Show success message
+                this.showSuccessMessage('Votre message a été envoyé avec succès !');
+                
+                // Reset form
+                this.form.reset();
+                
+            } catch (error) {
+                console.error('Form submission error:', error);
+                this.showErrorMessage('Une erreur est survenue lors de l\'envoi du formulaire. Veuillez réessayer.');
+            } finally {
+                // Reset button state
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            }
+        }
+    }
+    
+    // Initialize all forms on the page
+    document.querySelectorAll('form.form-component').forEach(formEl => {
+        new Form(formEl);
+    });
+    
+    // Make Form class available globally
+    window.Form = Form;
+});
+</script>

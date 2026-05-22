@@ -1,0 +1,210 @@
+<!-- Card Component -->
+<div class="card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+    <!-- Card Image (optional) -->
+    <div class="card-image">
+        <img src="" alt="" class="w-full h-48 object-cover">
+    </div>
+    
+    <!-- Card Content -->
+    <div class="p-6">
+        <!-- Card Header -->
+        <div class="flex justify-between items-start mb-3">
+            <h3 class="card-title text-xl font-semibold text-gray-900">Card Title</h3>
+            <!-- Optional: Icon or Badge -->
+            <div class="card-badge">
+                <!-- Badge content will be inserted here -->
+            </div>
+        </div>
+        
+        <!-- Card Body -->
+        <div class="card-body text-gray-700 mb-4">
+            <!-- Content will be inserted here -->
+        </div>
+        
+        <!-- Card Footer (optional) -->
+        <div class="card-footer mt-auto">
+            <!-- Footer content will be inserted here -->
+        </div>
+    </div>
+</div>
+
+<!-- Card Variant: With Image -->
+<template id="card-with-image">
+    <div class="card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+        <div class="card-image">
+            <img src="" alt="" class="w-full h-48 object-cover">
+        </div>
+        <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">Card Title</h3>
+            <div class="text-gray-700 mb-4">
+                <!-- Content will be inserted here -->
+            </div>
+            <div class="card-actions">
+                <!-- Actions will be inserted here -->
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Card Variant: Icon Card -->
+<template id="card-icon">
+    <div class="card bg-white rounded-lg shadow-md p-6 text-center transition-all duration-300 hover:shadow-lg">
+        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div class="card-icon">
+                <!-- Icon will be inserted here -->
+            </div>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Card Title</h3>
+        <div class="text-gray-700">
+            <!-- Content will be inserted here -->
+        </div>
+    </div>
+</template>
+
+<!-- Card Variant: Stats Card -->
+<template id="card-stats">
+    <div class="card bg-white rounded-lg shadow-md p-6 text-center">
+        <div class="text-3xl font-bold text-red-800 mb-2 card-stat">0</div>
+        <h3 class="text-lg font-medium text-gray-900 card-title">Stat Title</h3>
+        <p class="text-gray-600 text-sm mt-1 card-description">Stat description</p>
+    </div>
+</template>
+
+<script>
+// Card component functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to create a card
+    function createCard(options = {}) {
+        const {
+            variant = 'default',  // 'default', 'with-image', 'icon', 'stats'
+            title = '',
+            content = '',
+            image = '',
+            icon = '',
+            badge = '',
+            actions = '',
+            stat = '',
+            description = '',
+            className = ''
+        } = options;
+        
+        let cardTemplate;
+        
+        switch(variant) {
+            case 'with-image':
+                cardTemplate = document.getElementById('card-with-image').content.cloneNode(true);
+                if (image) {
+                    const img = cardTemplate.querySelector('.card-image img');
+                    img.src = image.src || '';
+                    img.alt = image.alt || '';
+                }
+                break;
+                
+            case 'icon':
+                cardTemplate = document.getElementById('card-icon').content.cloneNode(true);
+                if (icon) {
+                    const iconContainer = cardTemplate.querySelector('.card-icon');
+                    iconContainer.innerHTML = icon;
+                }
+                break;
+                
+            case 'stats':
+                cardTemplate = document.getElementById('card-stats').content.cloneNode(true);
+                if (stat) {
+                    const statEl = cardTemplate.querySelector('.card-stat');
+                    statEl.textContent = stat;
+                }
+                if (description) {
+                    const descEl = cardTemplate.querySelector('.card-description');
+                    descEl.textContent = description;
+                }
+                break;
+                
+            default:
+                cardTemplate = document.querySelector('#card-default-template')?.content.cloneNode(true) || 
+                              document.createElement('div');
+        }
+        
+        // Set common properties
+        const card = cardTemplate.querySelector('.card') || cardTemplate.firstElementChild;
+        if (className) {
+            card.className += ` ${className}`;
+        }
+        
+        const titleEl = card.querySelector('.card-title, h3');
+        if (titleEl && title) {
+            titleEl.textContent = title;
+        }
+        
+        const contentEl = card.querySelector('.card-body, .text-gray-700');
+        if (contentEl && content) {
+            if (typeof content === 'string') {
+                contentEl.innerHTML = content;
+            } else {
+                contentEl.innerHTML = '';
+                contentEl.appendChild(content);
+            }
+        }
+        
+        if (badge) {
+            const badgeEl = card.querySelector('.card-badge');
+            if (badgeEl) {
+                badgeEl.innerHTML = badge;
+            }
+        }
+        
+        if (actions) {
+            const actionsEl = card.querySelector('.card-actions, .card-footer');
+            if (actionsEl) {
+                if (typeof actions === 'string') {
+                    actionsEl.innerHTML = actions;
+                } else {
+                    actionsEl.innerHTML = '';
+                    actionsEl.appendChild(actions);
+                }
+            }
+        }
+        
+        return card;
+    }
+    
+    // Make createCard function available globally
+    window.createCard = createCard;
+    
+    // Initialize cards with data attributes
+    document.querySelectorAll('[data-card]').forEach(cardEl => {
+        const options = {
+            variant: cardEl.dataset.cardVariant || 'default',
+            title: cardEl.dataset.cardTitle || '',
+            content: cardEl.innerHTML.trim(),
+            className: cardEl.className
+        };
+        
+        if (cardEl.dataset.cardImage) {
+            options.image = {
+                src: cardEl.dataset.cardImage,
+                alt: cardEl.dataset.cardImageAlt || ''
+            };
+        }
+        
+        if (cardEl.dataset.cardIcon) {
+            options.icon = cardEl.dataset.cardIcon;
+        }
+        
+        if (cardEl.dataset.cardBadge) {
+            options.badge = cardEl.dataset.cardBadge;
+        }
+        
+        if (cardEl.dataset.cardStat) {
+            options.stat = cardEl.dataset.cardStat;
+        }
+        
+        if (cardEl.dataset.cardDescription) {
+            options.description = cardEl.dataset.cardDescription;
+        }
+        
+        const newCard = createCard(options);
+        cardEl.replaceWith(newCard);
+    });
+});
+</script>

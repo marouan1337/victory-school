@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Cambridge Float - Victory School</title>
+    <link rel="stylesheet" href="css/cambridge-float.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #991b1b;
+            margin-bottom: 20px;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .status.info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .test-button {
+            background: #991b1b;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #7f1d1d;
+        }
+        pre {
+            background: #1f2937;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Test Cambridge Floating Card</h1>
+        
+        <div id="test-results">
+            <p>Running diagnostics...</p>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button class="test-button" onclick="testCSS()">Test CSS Loaded</button>
+            <button class="test-button" onclick="testJS()">Test JS Loaded</button>
+            <button class="test-button" onclick="testImage()">Test Logo Image</button>
+            <button class="test-button" onclick="showCard()">Force Show Card</button>
+            <button class="test-button" onclick="clearCookie()">Clear Cookie</button>
+        </div>
+
+        <h2 style="margin-top: 30px;">📋 Checklist:</h2>
+        <div id="checklist">
+            <div id="check-css" class="status info">⏳ Checking CSS file...</div>
+            <div id="check-js" class="status info">⏳ Checking JS file...</div>
+            <div id="check-logo" class="status info">⏳ Checking logo image...</div>
+            <div id="check-cookie" class="status info">⏳ Checking cookie...</div>
+        </div>
+
+        <h2 style="margin-top: 30px;">📊 Debug Info:</h2>
+        <pre id="debug-info">Loading...</pre>
+    </div>
+
+    <!-- Load Cambridge Float Script -->
+    <script src="js/cambridge-float.js"></script>
+
+    <script>
+        // Test functions
+        function testCSS() {
+            const cssLoaded = document.querySelector('link[href*="cambridge-float.css"]');
+            if (cssLoaded) {
+                alert('✅ CSS file is linked!');
+                document.getElementById('check-css').className = 'status success';
+                document.getElementById('check-css').textContent = '✅ CSS file loaded successfully';
+            } else {
+                alert('❌ CSS file not found!');
+                document.getElementById('check-css').className = 'status error';
+                document.getElementById('check-css').textContent = '❌ CSS file NOT loaded';
+            }
+        }
+
+        function testJS() {
+            if (typeof CambridgeFloat !== 'undefined') {
+                alert('✅ JavaScript loaded!');
+                document.getElementById('check-js').className = 'status success';
+                document.getElementById('check-js').textContent = '✅ JavaScript loaded successfully';
+            } else {
+                alert('❌ JavaScript not loaded!');
+                document.getElementById('check-js').className = 'status error';
+                document.getElementById('check-js').textContent = '❌ JavaScript NOT loaded';
+            }
+        }
+
+        function testImage() {
+            const img = new Image();
+            img.onload = function() {
+                alert('✅ Logo image loaded successfully!');
+                document.getElementById('check-logo').className = 'status success';
+                document.getElementById('check-logo').textContent = '✅ Logo image exists';
+            };
+            img.onerror = function() {
+                alert('❌ Logo image failed to load!\n\nCheck:\n1. File exists at: logo/cambridge_logo12.jpg\n2. File name is lowercase\n3. File permissions are 644');
+                document.getElementById('check-logo').className = 'status error';
+                document.getElementById('check-logo').textContent = '❌ Logo image NOT found';
+            };
+            img.src = 'logo/cambridge_logo12.jpg';
+        }
+
+        function showCard() {
+            // Clear cookie first
+            document.cookie = 'cambridge_float_closed=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            
+            // Try to show card
+            if (typeof CambridgeFloat !== 'undefined' && typeof CambridgeFloat.show === 'function') {
+                CambridgeFloat.show();
+                alert('✅ Card shown! Look for floating card in bottom-right corner.');
+            } else {
+                alert('❌ Cannot show card. JavaScript not loaded properly.');
+            }
+        }
+
+        function clearCookie() {
+            document.cookie = 'cambridge_float_closed=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            alert('✅ Cookie cleared! Refresh the page to see the card again.');
+            location.reload();
+        }
+
+        // Auto-run diagnostics on page load
+        window.addEventListener('load', function() {
+            let debugInfo = '';
+            
+            // Check CSS
+            const cssLink = document.querySelector('link[href*="cambridge-float.css"]');
+            debugInfo += 'CSS Link: ' + (cssLink ? '✅ Found' : '❌ Not Found') + '\n';
+            debugInfo += 'CSS Href: ' + (cssLink ? cssLink.href : 'N/A') + '\n\n';
+            
+            if (cssLink) {
+                document.getElementById('check-css').className = 'status success';
+                document.getElementById('check-css').textContent = '✅ CSS file loaded';
+            } else {
+                document.getElementById('check-css').className = 'status error';
+                document.getElementById('check-css').textContent = '❌ CSS file NOT loaded';
+            }
+
+            // Check JS
+            debugInfo += 'JavaScript: ' + (typeof CambridgeFloat !== 'undefined' ? '✅ Loaded' : '❌ Not Loaded') + '\n';
+            debugInfo += 'CambridgeFloat Object: ' + (typeof CambridgeFloat) + '\n\n';
+            
+            if (typeof CambridgeFloat !== 'undefined') {
+                document.getElementById('check-js').className = 'status success';
+                document.getElementById('check-js').textContent = '✅ JavaScript loaded';
+            } else {
+                document.getElementById('check-js').className = 'status error';
+                document.getElementById('check-js').textContent = '❌ JavaScript NOT loaded';
+            }
+
+            // Check Cookie
+            const cookies = document.cookie;
+            const floatCookie = cookies.split(';').find(c => c.trim().startsWith('cambridge_float_closed='));
+            debugInfo += 'Cookies: ' + (cookies || 'None') + '\n';
+            debugInfo += 'Float Cookie: ' + (floatCookie || 'Not set') + '\n\n';
+            
+            if (floatCookie) {
+                document.getElementById('check-cookie').className = 'status info';
+                document.getElementById('check-cookie').textContent = '⚠️ Cookie is set (card was closed before)';
+            } else {
+                document.getElementById('check-cookie').className = 'status success';
+                document.getElementById('check-cookie').textContent = '✅ No cookie - card should show';
+            }
+
+            // Check if card exists in DOM
+            const cardElement = document.getElementById('cambridgeFloatCard');
+            debugInfo += 'Card in DOM: ' + (cardElement ? '✅ Yes' : '❌ No') + '\n';
+            debugInfo += 'Card Visible: ' + (cardElement && !cardElement.classList.contains('hidden') ? '✅ Yes' : '❌ No') + '\n\n';
+
+            // Browser info
+            debugInfo += 'Browser: ' + navigator.userAgent + '\n';
+            debugInfo += 'Location: ' + window.location.href + '\n';
+            debugInfo += 'Base URL: ' + window.location.origin + '\n';
+
+            document.getElementById('debug-info').textContent = debugInfo;
+
+            // Test image
+            setTimeout(testImage, 500);
+
+            // Summary
+            const resultsDiv = document.getElementById('test-results');
+            if (typeof CambridgeFloat !== 'undefined' && cssLink) {
+                resultsDiv.innerHTML = '<div class="status success">✅ All core files are loading correctly!</div>';
+            } else {
+                resultsDiv.innerHTML = '<div class="status error">❌ Some files are missing. Check the results above.</div>';
+            }
+        });
+
+        // Log all errors to screen
+        window.addEventListener('error', function(e) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'status error';
+            errorDiv.innerHTML = '<strong>❌ Error detected:</strong><br>' + e.message + '<br>File: ' + e.filename + ':' + e.lineno;
+            document.getElementById('test-results').appendChild(errorDiv);
+        });
+    </script>
+</body>
+</html>

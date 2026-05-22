@@ -1,0 +1,245 @@
+/* Cambridge Floating Ad Card */
+
+.cambridge-float-card {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.2);
+    z-index: 9998;
+    overflow: hidden;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+/* Animation only when visible */
+.cambridge-float-card:not(.hidden) {
+    animation: slideInFromRight 0.6s ease-out;
+}
+
+.cambridge-float-card.hidden {
+    transform: translateX(400px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cambridge-float-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(59, 130, 246, 0.3);
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Close Button */
+.cambridge-float-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.cambridge-float-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+/* Card Content */
+.cambridge-float-header {
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.cambridge-float-logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 12px;
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cambridge-float-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.cambridge-float-title {
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cambridge-float-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.cambridge-float-body {
+    padding: 0 20px 20px;
+}
+
+.cambridge-levels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.cambridge-level-badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.cambridge-level-badge:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.cambridge-float-cta {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    background: white;
+    color: #1e3a8a;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cambridge-float-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    background: #f0f9ff;
+}
+
+.cambridge-success-rate {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #86efac;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.cambridge-success-rate strong {
+    color: #a7f3d0;
+    font-size: 16px;
+}
+
+/* Pulse animation for attention */
+.cambridge-float-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0;
+    animation: pulse-border 3s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.3;
+        transform: scale(1.02);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cambridge-float-card {
+        width: 280px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .cambridge-float-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .cambridge-float-title {
+        font-size: 16px;
+    }
+    
+    .cambridge-float-subtitle {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cambridge-float-card {
+        width: calc(100% - 30px);
+        left: 15px;
+        right: 15px;
+    }
+}
+
+/* Show/Hide animation delay */
+.cambridge-float-card {
+    animation-delay: 2s;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .cambridge-float-card {
+        animation: none;
+        transition: none;
+    }
+    
+    .cambridge-float-card::before {
+        animation: none;
+    }
+}

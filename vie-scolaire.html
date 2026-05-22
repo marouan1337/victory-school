@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vie à l'établissement - École Victory</title>
+    <meta name="description" content="Découvrez la vie scolaire et les activités extrascolaires à l'École Victory de Laâyoune">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/light-streak.css">
+    <link rel="stylesheet" href="css/cambridge-float.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            800: '#991b1b',
+                            900: '#7f1d1d',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-up': 'fadeIn 0.8s ease-out',
+                        'slide-left': 'fadeInLeft 0.8s ease-out',
+                        'slide-right': 'fadeInRight 0.8s ease-out',
+                        'bounce': 'bounce 2s infinite',
+                        'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'blob': 'blob 7s infinite',
+                        'scroll': 'scroll 30s linear infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': {
+                                opacity: '0',
+                                transform: 'translateY(20px)'
+                            },
+                            '100%': {
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            },
+                        },
+                        fadeInLeft: {
+                            '0%': {
+                                opacity: '0',
+                                transform: 'translateX(-30px)'
+                            },
+                            '100%': {
+                                opacity: '1',
+                                transform: 'translateX(0)'
+                            },
+                        },
+                        fadeInRight: {
+                            '0%': {
+                                opacity: '0',
+                                transform: 'translateX(30px)'
+                            },
+                            '100%': {
+                                opacity: '1',
+                                transform: 'translateX(0)'
+                            },
+                        },
+                        bounce: {
+                            '0%, 100%': {
+                                transform: 'translateY(0)'
+                            },
+                            '50%': {
+                                transform: 'translateY(-10px)'
+                            },
+                        },
+                        pulse: {
+                            '0%, 100%': {
+                                transform: 'scale(1)'
+                            },
+                            '50%': {
+                                transform: 'scale(1.05)'
+                            },
+                        },
+                        blob: {
+                            '0%': {
+                                transform: 'translate(0px, 0px) scale(1)',
+                            },
+                            '33%': {
+                                transform: 'translate(30px, -50px) scale(1.1)',
+                            },
+                            '66%': {
+                                transform: 'translate(-20px, 20px) scale(0.9)',
+                            },
+                            '100%': {
+                                transform: 'translate(0px, 0px) scale(1)',
+                            },
+                        },
+                        scroll: {
+                            '0%': {
+                                transform: 'translateX(0)',
+                            },
+                            '100%': {
+                                transform: 'translateX(-50%)',
+                            },
+                        }
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .card:hover .card-image {
+            transform: scale(1.05);
+        }
+        
+        .section-header:hover .section-divider {
+            transform: scaleX(1.2);
+        }
+
+        .gradient-text {
+    background-image: linear-gradient(90deg, #fef2f2, #fed7aa, #fef2f2);
+    -webkit-background-clip: text;
+    background-clip: text;  /* Add this line */
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: text-gradient 3s linear infinite;
+}
+
+        @keyframes text-gradient {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+    </style>
+    <script src="js/components.js" defer></script>
+</head>
+<body class="font-sans flex flex-col min-h-screen bg-gray-50">
+    <!-- Navbar will be injected here by components.js -->
+    <div data-include="components/navbar.html"></div>
+    
+    <!-- Main content container -->
+    <div id="main-content" class="flex-grow">
+
+    <header class="relative pt-40 pb-24 text-white overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-red-900 to-red-700 z-0">
+            <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHBhdGggZD0iTTAgMGgxMDB2MTAwSDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTUwIDUwbC0yNS0yNS0xNSAxNSA0MC00MHoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+')]"></div>
+        </div>
+
+        <div class="absolute -top-32 -right-32 w-64 h-64 bg-red-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-20 -left-20 w-72 h-72 bg-amber-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-block px-4 py-1.5 mb-3 text-sm font-medium bg-white/90 text-red-900 rounded-full shadow-md" data-aos="fade-up">
+                Découverte & Partage
+            </span>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight" data-aos="fade-up" data-aos-delay="100">
+                <span class="gradient-text">Vie à l'Établissement</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                Découvrez un environnement éducatif dynamique où chaque jour est une nouvelle aventure d'apprentissage et de croissance.
+            </p>
+
+            <div class="mt-16" data-aos="fade-up" data-aos-delay="300">
+                <a href="#activites" class="inline-flex flex-col items-center text-white/80 hover:text-white transition-colors duration-300">
+                    <span class="mb-2 text-sm font-medium">Explorer</span>
+                    <svg class="w-6 h-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <section class="mb-24" id="activites">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-4 py-1.5 mb-3 text-sm font-medium text-red-800 bg-red-100 rounded-full">Découvrir</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Une Vie Scolaire Épanouissante</h2>
+                <div class="w-24 h-1.5 bg-gradient-to-r from-red-800 to-amber-500 mx-auto rounded-full transform transition-all duration-700 hover:scale-110"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto mt-6">À l'École Victory, nous croyons en l'importance d'une éducation complète qui dépasse les salles de classe. Notre programme d'activités parascolaires est conçu pour éveiller les passions et développer les talents de chaque élève.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl bg-white transition-all duration-500 hover:shadow-2xl hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/sport_1.jpeg"
+                            alt="Activités Sportives"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 px-3 py-1 bg-red-600 text-white text-xs font-semibold rounded-full shadow-lg">Populaire</span>
+                    </div>
+                    <div class="p-6 relative">
+                        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4 absolute -top-6 left-6 shadow-md">
+                            <svg class="w-6 h-6 text-red-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3 mt-6">Activités Sportives</h3>
+                        <p class="text-gray-600 mb-5">Développement physique et esprit d'équipe à travers diverses disciplines sportives adaptées à tous les niveaux.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#sports" class="group inline-flex items-center text-red-700 font-medium hover:text-red-800 transition-colors">
+                                En savoir plus
+                                <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </a>
+                            <span class="text-xs text-gray-500">12 activités disponibles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl bg-white transition-all duration-500 hover:shadow-2xl hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/Classroom_scenes.jpeg"
+                            alt="Sorties Pédagogiques"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6 relative">
+                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 absolute -top-6 left-6 shadow-md">
+                            <svg class="w-6 h-6 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3 mt-6">Sorties Pédagogiques</h3>
+                        <p class="text-gray-600 mb-5">Découvertes culturelles et scientifiques pour compléter et enrichir les apprentissages en classe.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#trips" class="group inline-flex items-center text-blue-700 font-medium hover:text-blue-800 transition-colors">
+                                En savoir plus
+                                <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </a>
+                            <span class="text-xs text-gray-500">8 sorties par an</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl bg-white transition-all duration-500 hover:shadow-2xl hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="images/art_culture.jpeg"
+                            alt="Événements Culturels"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-900/70 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 px-3 py-1 bg-purple-600 text-white text-xs font-semibold rounded-full shadow-lg">Nouveau</span>
+                    </div>
+                    <div class="p-6 relative">
+                        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4 absolute -top-6 left-6 shadow-md">
+                            <svg class="w-6 h-6 text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3 mt-6">Événements Culturels</h3>
+                        <p class="text-gray-600 mb-5">Célébrations, spectacles et manifestations artistiques tout au long de l'année scolaire.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#evenements" class="group inline-flex items-center text-purple-700 font-medium hover:text-purple-800 transition-colors">
+                                En savoir plus
+                                <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </a>
+                            <span class="text-xs text-gray-500">15+ événements annuels</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 grid grid-cols-1 md:grid-cols-4 gap-6 bg-gradient-to-r from-red-800 to-red-700 rounded-2xl p-8 text-white shadow-xl" data-aos="fade-up">
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">35+</div>
+                    <div class="text-sm uppercase tracking-wider text-red-100">Activités</div>
+                    <div class="mt-2 h-1 w-12 bg-amber-400 mx-auto"></div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">100%</div>
+                    <div class="text-sm uppercase tracking-wider text-red-100">Engagement</div>
+                    <div class="mt-2 h-1 w-12 bg-amber-400 mx-auto"></div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">15+</div>
+                    <div class="text-sm uppercase tracking-wider text-red-100">Événements</div>
+                    <div class="mt-2 h-1 w-12 bg-amber-400 mx-auto"></div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">8</div>
+                    <div class="text-sm uppercase tracking-wider text-red-100">Sorties par an</div>
+                    <div class="mt-2 h-1 w-12 bg-amber-400 mx-auto"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Gallery Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <span class="inline-block px-4 py-1.5 mb-3 text-sm font-medium text-red-800 bg-red-100 rounded-full">Nos Moments</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">La Vie en Vidéo</h2>
+                    <div class="w-24 h-1.5 bg-gradient-to-r from-red-800 to-amber-500 mx-auto rounded-full"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto mt-6">Découvrez les moments forts de la vie à l'École Victory à travers ces vidéos.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Video 1 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative aspect-video bg-black">
+                            <video 
+                                class="w-full h-full"
+                                controls
+                                preload="metadata">
+                                <source src="videos/WhatsApp Video 2025-11-17 at 10.42.02.mp4" type="video/mp4">
+                                Votre navigateur ne supporte pas la lecture de vidéos.
+                            </video>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">Activités Quotidiennes</h3>
+                            <p class="text-gray-600 text-sm">Découvrez le quotidien de nos élèves en classe et pendant les activités.</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative aspect-video bg-black">
+                            <video 
+                                class="w-full h-full"
+                                controls
+                                preload="metadata">
+                                <source src="videos/WhatsApp Video 2025-11-17 at 10.46.12.mp4" type="video/mp4">
+                                Votre navigateur ne supporte pas la lecture de vidéos.
+                            </video>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">Événements Spéciaux</h3>
+                            <p class="text-gray-600 text-sm">Les célébrations et événements marquants de notre école.</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                        <div class="relative aspect-video bg-black">
+                            <video 
+                                class="w-full h-full"
+                                controls
+                                preload="metadata">
+                                <source src="videos/WhatsApp Video 2025-11-17 at 11.14.37.mp4" type="video/mp4">
+                                Votre navigateur ne supporte pas la lecture de vidéos.
+                            </video>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">Projets Éducatifs</h3>
+                            <p class="text-gray-600 text-sm">Nos projets pédagogiques innovants et créatifs en action.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sports" class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="inline-block px-4 py-1.5 mb-3 text-sm font-medium text-red-800 bg-red-100 rounded-full">Sport & Bien-être</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Excellence Sportive</h2>
+                    <div class="w-24 h-1.5 bg-gradient-to-r from-red-800 to-amber-500 mx-auto rounded-full transform transition-all duration-700 hover:scale-110"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto mt-6">Le sport occupe une place centrale dans notre projet éducatif, favorisant le développement physique, l'esprit d'équipe et le dépassement de soi.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden" data-aos="fade-up">
+                    <div class="md:flex">
+                        <div class="md:w-1/2 relative group">
+                            <div class="absolute inset-0 bg-gradient-to-r from-red-800/90 to-transparent z-10 md:hidden"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 z-10 md:hidden">
+                                <h2 class="text-3xl font-bold text-white mb-2">Activités Sportives</h2>
+                                <p class="text-red-100">Développement physique et esprit d'équipe</p>
+                            </div>
+                            <img src="images/sport_2.jpeg"
+                                alt="Activités Sportives"
+                                class="w-full h-96 md:h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+                        <div class="p-8 md:p-12 md:w-1/2">
+                            <div class="hidden md:block">
+                                <h2 class="text-3xl font-bold text-gray-900 mb-4">Excellence Sportive</h2>
+                                <p class="text-gray-600 mb-6">Notre programme sportif complet est conçu pour développer les compétences physiques, mentales et sociales de nos élèves à travers une variété de disciplines.</p>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-md transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                                    <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                                        <svg class="w-6 h-6 text-red-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Football</h3>
+                                    <p class="text-gray-600 text-sm">Développement des compétences techniques et tactiques du football en salle et extérieur.</p>
+                                </div>
+
+                                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-md transition-all duration-300 group" data-aos="fade-up" data-aos-delay="150">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                                        <svg class="w-6 h-6 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Basketball</h3>
+                                    <p class="text-gray-600 text-sm">Maîtrise des fondamentaux et stratégies de jeu en équipe.</p>
+                                </div>
+
+                                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-md transition-all duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+                                        <svg class="w-6 h-6 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Volleyball</h3>
+                                    <p class="text-gray-600 text-sm">Apprentissage des techniques de passe, service et smash en équipe.</p>
+                                </div>
+
+                                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-md transition-all duration-300 group" data-aos="fade-up" data-aos-delay="250">
+                                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                                        <svg class="w-6 h-6 text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Judo</h3>
+                                    <p class="text-gray-600 text-sm">Art martial favorisant la maîtrise de soi et le respect d'autrui.</p>
+                                </div>
+
+                                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-md transition-all duration-300 group" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center mb-4">
+                                        <svg class="w-6 h-6 text-cyan-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h10a4 4 0 004-4v-5M3 9a4 4 0 014-4h10a4 4 0 014 4v5M3 9l3 3m0 0l3-3m-3 3l3 3m0 0l3-3m-3 3V3" />
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Natation</h3>
+                                    <p class="text-gray-600 text-sm">Apprentissage des différentes nages et techniques de sauvetage.</p>
+                                </div>
+
+                                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-md transition-all duration-300 group" data-aos="fade-up" data-aos-delay="350">
+                                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                                        <svg class="w-6 h-6 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Athlétisme</h3>
+                                    <p class="text-gray-600 text-sm">Découverte et perfectionnement des différentes disciplines de la course, sauts et lancers.</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-8 border-t border-gray-100">
+                                <p class="text-gray-600 mb-6">Des compétitions inter-classes et inter-écoles sont organisées régulièrement pour encourager l'esprit sportif et la compétition saine. Nos installations modernes et nos entraîneurs qualifiés assurent un environnement optimal pour l'épanouissement sportif de chaque élève.</p>
+
+                                <div class="flex flex-col sm:flex-row gap-4">
+                                    <a href="#contact" class="px-6 py-3 bg-red-700 hover:bg-red-800 text-white font-medium rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg text-center">
+                                        En savoir plus sur nos installations
+                                    </a>
+                                    <a href="#inscriptions" class="px-6 py-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 font-medium rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg text-center">
+                                        Inscription aux activités
+                                    </a>
+                                </div>
+
+                                <div class="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm text-gray-500">
+                                    <div class="flex items-center">
+                                        <svg class="h-5 w-5 text-green-500 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        Encadrement professionnel
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="h-5 w-5 text-green-500 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        Matériel fourni
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="h-5 w-5 text-green-500 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        Certificat médical obligatoire
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="trips" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="inline-block px-4 py-2 text-sm font-semibold tracking-wider text-red-700 uppercase bg-red-50 rounded-full">Découvertes & Apprentissages</span>
+                    <h2 class="mt-4 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">Voyages & Sorties Pédagogiques</h2>
+                    <div class="mt-6">
+                        <div class="inline-block w-20 h-1.5 bg-gradient-to-r from-red-700 to-amber-500 rounded-full"></div>
+                    </div>
+                    <p class="max-w-3xl mx-auto mt-6 text-xl text-gray-600">Des expériences éducatives inoubliables qui complètent parfaitement l'enseignement en classe.</p>
+                </div>
+
+                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    <div class="group relative overflow-hidden bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="images/Community_events.jpeg"
+                                alt="Musée des Sciences"
+                                class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                            <div class="absolute top-4 right-4">
+                                <span class="px-3 py-1 text-sm font-bold text-white bg-red-600 rounded-full shadow-md">15 Nov</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6">
+                                <span class="inline-block px-3 py-1 mb-2 text-xs font-semibold text-white bg-amber-500 rounded-full">Sciences & Technologie</span>
+                                <h3 class="text-2xl font-bold text-white">Musée des Sciences</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="mb-6 text-gray-600">Exploration interactive des dernières avancées scientifiques et technologiques à travers des expositions captivantes et des ateliers pratiques.</p>
+                            <div class="space-y-3 text-gray-700">
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span>09:00 - 16:00</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    <span>Laayoune</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                    </svg>
+                                    <span>Niveaux : CE2 à 6ème</span>
+                                </div>
+                            </div>
+                            <div class="pt-6 mt-6 border-t border-gray-100">
+                                <a href="#" class="inline-flex items-center font-medium text-red-700 hover:text-red-800 group">
+                                    En savoir plus
+                                    <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1" data-aos="fade-up" data-aos-delay="150">
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="images/Community_events2.jpeg"
+                                alt="Atelier de Sécurité Routière"
+                                class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                            <div class="absolute top-4 right-4">
+                                <span class="px-3 py-1 text-sm font-bold text-white bg-blue-600 rounded-full shadow-md">5 Déc</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6">
+                                <span class="inline-block px-3 py-1 mb-2 text-xs font-semibold text-white bg-blue-500 rounded-full">Éducation & Sécurité</span>
+                                <h3 class="text-2xl font-bold text-white">Atelier Sécurité Routière</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="mb-6 text-gray-600">Ateliers pratiques d'éducation à la sécurité routière avec panneaux de signalisation et simulations pour apprendre les règles de circulation.</p>
+                            <div class="space-y-3 text-gray-700">
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                    <span>10:00 - 15:00</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    <span>Laayoune</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                    </svg>
+                                    <span>Niveaux : Collège</span>
+                                </div>
+                            </div>
+                            <div class="pt-6 mt-6 border-t border-gray-100">
+                                <a href="#" class="inline-flex items-center font-medium text-blue-700 hover:text-blue-800 group">
+                                    En savoir plus
+                                    <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="images/Community_events3.jpeg"
+                                alt="Événement Sécurité Routière"
+                                class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                            <div class="absolute top-4 right-4">
+                                <span class="px-3 py-1 text-sm font-bold text-white bg-green-600 rounded-full shadow-md">12 Jan</span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6">
+                                <span class="inline-block px-3 py-1 mb-2 text-xs font-semibold text-white bg-green-500 rounded-full">Sécurité & Prévention</span>
+                                <h3 class="text-2xl font-bold text-white">Événement Sécurité Routière</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="mb-6 text-gray-600">Grand événement communautaire de sensibilisation à la sécurité routière avec participation des parents, élèves et forces de l'ordre.</p>
+                            <div class="space-y-3 text-gray-700">
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span>08:30 - 17:00</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    <span>Laayoune</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                    </svg>
+                                    <span>Niveaux : Primaire</span>
+                                </div>
+                            </div>
+                            <div class="pt-6 mt-6 border-t border-gray-100">
+                                <a href="#" class="inline-flex items-center font-medium text-green-700 hover:text-green-800 group">
+                                    En savoir plus
+                                    <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center" data-aos="fade-up">
+                    <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-red-700 border border-transparent rounded-md shadow-sm hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
+                        En savoir plus sur nos sorties éducatives
+                        <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Road Safety Education Section -->
+        <section id="securite-routiere" class="py-20 bg-gradient-to-br from-blue-50 to-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="inline-block px-4 py-2 text-sm font-semibold tracking-wider text-blue-700 uppercase bg-blue-50 rounded-full">🚦 Programme Phare</span>
+                    <h2 class="mt-4 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">Éducation à la Sécurité Routière</h2>
+                    <div class="mt-6">
+                        <div class="inline-block w-20 h-1.5 bg-gradient-to-r from-blue-700 to-green-500 rounded-full"></div>
+                    </div>
+                    <p class="max-w-3xl mx-auto mt-6 text-xl text-gray-600">
+                        Notre école s'engage activement dans l'éducation à la sécurité routière avec un programme complet d'ateliers pratiques, 
+                        visites éducatives et partenariats avec les autorités locales.
+                    </p>
+                </div>
+
+                <!-- Statistics -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16" data-aos="fade-up">
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-105 transition-transform">
+                        <div class="text-4xl font-bold text-blue-600 mb-2">5+</div>
+                        <div class="text-sm text-gray-600 uppercase tracking-wide">Ateliers/An</div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-105 transition-transform">
+                        <div class="text-4xl font-bold text-green-600 mb-2">100%</div>
+                        <div class="text-sm text-gray-600 uppercase tracking-wide">Élèves Formés</div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-105 transition-transform">
+                        <div class="text-4xl font-bold text-amber-600 mb-2">3</div>
+                        <div class="text-sm text-gray-600 uppercase tracking-wide">Partenaires</div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-105 transition-transform">
+                        <div class="text-4xl font-bold text-red-600 mb-2">Certificat</div>
+                        <div class="text-sm text-gray-600 uppercase tracking-wide">Officiel</div>
+                    </div>
+                </div>
+
+                <!-- Program Activities -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                    <!-- Activity 1 -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="images/Community_events2.jpeg" alt="Atelier pratique" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <span class="inline-block px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full mb-2">Atelier Pratique</span>
+                                <h3 class="text-xl font-bold text-white">Signalisation Routière</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Apprentissage interactif des panneaux de signalisation et règles de circulation avec matériel pédagogique.</p>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-center">
+                                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Panneaux de signalisation
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Règles de circulation
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Exercices pratiques
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Activity 2 -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="images/Community_events3.jpeg" alt="Événement communautaire" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <span class="inline-block px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full mb-2">Événement</span>
+                                <h3 class="text-xl font-bold text-white">Journée Sécurité</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Grand événement avec participation des parents, élèves et forces de l'ordre pour sensibiliser toute la communauté.</p>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-center">
+                                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Implication des parents
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Démonstrations en direct
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Activités interactives
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Activity 3 -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="images/Community_events4.jpeg" alt="Visite éducative" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <span class="inline-block px-3 py-1 bg-amber-600 text-white text-xs font-bold rounded-full mb-2">Sortie</span>
+                                <h3 class="text-xl font-bold text-white">Visite Centre Sécurité</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Sortie éducative au centre de sécurité avec présentation par des professionnels et découverte des métiers.</p>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li class="flex items-center">
+                                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Rencontre avec experts
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Découverte des métiers
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Visite guidée
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certification Section -->
+                <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl shadow-2xl overflow-hidden" data-aos="fade-up">
+                    <div class="md:flex items-center">
+                        <div class="md:w-1/2 p-8 md:p-12 text-white">
+                            <h3 class="text-3xl font-bold mb-4">🏆 Certificat Officiel</h3>
+                            <p class="text-blue-100 mb-6">
+                                À la fin du programme, chaque élève reçoit un certificat officiel de réussite en éducation à la sécurité routière, 
+                                reconnu par les autorités locales.
+                            </p>
+                            <ul class="space-y-3 mb-6">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-green-300 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Formation complète et certifiée
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-green-300 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Cérémonie de remise officielle
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-green-300 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Partenariat avec autorités locales
+                                </li>
+                            </ul>
+                            <a href="#contact" class="inline-flex items-center px-6 py-3 bg-white text-blue-700 font-bold rounded-lg hover:bg-blue-50 transition-colors">
+                                En savoir plus
+                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="md:w-1/2 relative h-64 md:h-96">
+                            <img src="images/Community_events6.jpeg" alt="Cérémonie de remise de certificats" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="evenements" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="inline-block px-4 py-1.5 mb-3 text-sm font-medium text-red-800 bg-red-100 rounded-full">Culture & Créativité</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Événements Culturels</h2>
+                    <div class="w-24 h-1.5 bg-gradient-to-r from-red-800 to-amber-500 mx-auto rounded-full transform transition-all duration-700 hover:scale-110"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto mt-6">Découvrez notre programme culturel riche et varié qui éveille la créativité et l'ouverture d'esprit de nos élèves.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="images/art_culture1.jpeg"
+                                alt="Concert de Printemps"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="absolute top-4 right-4 bg-red-700 text-white text-xs font-bold px-3 py-1 rounded-full">15 Avr.</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="inline-block px-2 py-1 text-xs font-semibold text-red-700 bg-red-100 rounded-full">Musique & Arts</span>
+                                <span class="text-sm text-gray-500">
+                                    <i class="far fa-clock mr-1"></i>14:00 - 16:00
+                                </span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Concert de Printemps</h3>
+                            <p class="text-gray-600 mb-4">Venez profiter d'un après-midi musical avec nos élèves talentueux qui présenteront leurs compositions et interprétations.</p>
+                            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                <span class="inline-flex items-center text-sm text-gray-600">
+                                    <svg class="w-4 h-4 mr-1.5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    Salle Polyvalente
+                                </span>
+                                <a href="#" class="text-red-700 font-medium hover:text-red-800 transition-colors inline-flex items-center">
+                                    En savoir plus
+                                    <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="images/Community_events4.jpeg"
+                                alt="Visite Éducative Sécurité"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="absolute top-4 right-4 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full">15 Mai</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="inline-block px-2 py-1 text-xs font-semibold text-amber-700 bg-amber-100 rounded-full">Sortie Éducative</span>
+                                <span class="text-sm text-gray-500">
+                                    <i class="far fa-clock mr-1"></i>10:00 - 18:00
+                                </span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Visite Centre de Sécurité</h3>
+                            <p class="text-gray-600 mb-4">Sortie éducative au centre de sécurité avec présentation par des professionnels et découverte des métiers de la sécurité.</p>
+                            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                <span class="inline-flex items-center text-sm text-gray-600">
+                                    <svg class="w-4 h-4 mr-1.5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    Galerie d'Art
+                                </span>
+                                <a href="#" class="text-amber-600 font-medium hover:text-amber-700 transition-colors inline-flex items-center">
+                                    En savoir plus
+                                    <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="images/Community_events5.jpeg"
+                                alt="Activité Sécurité Routière"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="absolute top-4 right-4 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">22 Juin</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="inline-block px-2 py-1 text-xs font-semibold text-purple-700 bg-purple-100 rounded-full">Sécurité Routière</span>
+                                <span class="text-sm text-gray-500">
+                                    <i class="far fa-clock mr-1"></i>19:00 - 22:00
+                                </span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Apprentissage Signalisation</h3>
+                            <p class="text-gray-600 mb-4">Activité pratique d'apprentissage de la signalisation routière avec manipulation de panneaux et exercices interactifs.</p>
+                            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                <span class="inline-flex items-center text-sm text-gray-600">
+                                    <svg class="w-4 h-4 mr-1.5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    Salle de Spectacle
+                                </span>
+                                <a href="#" class="text-purple-600 font-medium hover:text-purple-700 transition-colors inline-flex items-center">
+                                    En savoir plus
+                                    <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 bg-gradient-to-r from-red-800 to-red-900 rounded-2xl p-8 md:p-12 text-center text-white" data-aos="fade-up">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4">Ne manquez aucun événement !</h3>
+                    <p class="text-red-100 max-w-2xl mx-auto mb-8 text-lg">Inscrivez-vous à notre newsletter pour recevoir les mises à jour sur nos prochains événements culturels.</p>
+                    <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
+                        <input type="email" placeholder="Votre adresse email" class="flex-grow px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-red-300" required>
+                        <button type="submit" class="px-6 py-3 bg-white text-red-800 font-bold rounded-lg hover:bg-gray-100 transition-colors whitespace-nowrap">
+                            S'inscrire
+                        </button>
+                    </form>
+                    <p class="text-sm text-red-200 mt-4">Nous respectons votre vie privée. Désinscription à tout moment.</p>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <button class="bg-red-800 hover:bg-red-900 text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105">
+                        Voir tous les événements
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="galerie" class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold text-red-800 bg-red-100 rounded-full mb-4">Mémoires</span>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Galerie Photos</h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-red-700 to-amber-600 mx-auto mb-6"></div>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Quelques moments inoubliables capturés lors de nos activités scolaires et événements spéciaux.</p>
+                </div>
+
+                <!-- Auto-scrolling Carousel Container -->
+                <div class="relative overflow-hidden" id="gallery-carousel-container">
+                    <div class="flex gap-6 will-change-transform" id="gallery-carousel">
+                    <a href="galerie.html" class="gallery-item group relative overflow-hidden rounded-2xl shadow-lg flex-shrink-0 w-80 cursor-pointer" data-category="sport">
+                        <img src="images/sport_1.jpeg"
+                            alt="Compétition d'athlétisme"
+                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-blue-600 rounded-full mb-2">Athlétisme</span>
+                                <h3 class="text-lg font-bold text-white">Championnat d'Athlétisme</h3>
+                                <p class="text-sm text-gray-200">Compétition régionale</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="galerie.html" class="gallery-item group relative overflow-hidden rounded-2xl shadow-lg flex-shrink-0 w-80 cursor-pointer" data-category="sorties">
+                        <img src="images/Community_events6.jpeg"
+                            alt="Cérémonie Sécurité Routière"
+                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-amber-600 rounded-full mb-2">Cérémonie</span>
+                                <h3 class="text-lg font-bold text-white">Remise de Certificats</h3>
+                                <p class="text-sm text-gray-200">Programme sécurité routière</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="galerie.html" class="gallery-item group relative overflow-hidden rounded-2xl shadow-lg flex-shrink-0 w-80 cursor-pointer" data-category="evenements">
+                        <img src="images/Community_events.jpeg"
+                            alt="Spectacle de fin d'année"
+                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-purple-600 rounded-full mb-2">Événement</span>
+                                <h3 class="text-lg font-bold text-white">Spectacle Annuel</h3>
+                                <p class="text-sm text-gray-200">Représentation des élèves</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="galerie.html" class="gallery-item group relative overflow-hidden rounded-2xl shadow-lg flex-shrink-0 w-80 cursor-pointer" data-category="culture">
+                        <img src="images/art_culture1.jpeg"
+                            alt="Atelier artistique"
+                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-green-600 rounded-full mb-2">Art</span>
+                                <h3 class="text-lg font-bold text-white">Atelier de Théâtre</h3>
+                                <p class="text-sm text-gray-200">Expression artistique</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="galerie.html" class="gallery-item group relative overflow-hidden rounded-2xl shadow-lg flex-shrink-0 w-80 cursor-pointer" data-category="sport">
+                        <img src="images/sport_2.jpeg"
+                            alt="Équipe de football de l'école"
+                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-red-600 rounded-full mb-2">Football</span>
+                                <h3 class="text-lg font-bold text-white">Équipe de Football</h3>
+                                <p class="text-sm text-gray-200">Notre équipe scolaire</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="galerie.html" class="gallery-item group relative overflow-hidden rounded-2xl shadow-lg flex-shrink-0 w-80 cursor-pointer" data-category="evenements">
+                        <img src="new_images/548203218_794041436555466_326750039928139880_n.jpg"
+                            alt="Événement scolaire"
+                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-purple-600 rounded-full mb-2">Événements</span>
+                                <h3 class="text-lg font-bold text-white">Moments Spéciaux</h3>
+                                <p class="text-sm text-gray-200">Célébrations scolaires</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="galerie.html" class="gallery-item group relative overflow-hidden rounded-2xl shadow-lg flex-shrink-0 w-80 cursor-pointer" data-category="activites">
+                        <img src="new_images/548203942_794044396555170_2690180316075544073_n.jpg"
+                            alt="Activités pédagogiques"
+                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-blue-600 rounded-full mb-2">Pédagogie</span>
+                                <h3 class="text-lg font-bold text-white">Apprentissage Actif</h3>
+                                <p class="text-sm text-gray-200">En classe</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="galerie.html" class="gallery-item group relative overflow-hidden rounded-2xl shadow-lg flex-shrink-0 w-80 cursor-pointer" data-category="activites">
+                        <img src="new_images/548389169_794046293221647_3543148221539098341_n.jpg"
+                            alt="Travaux pratiques"
+                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-green-600 rounded-full mb-2">Pratique</span>
+                                <h3 class="text-lg font-bold text-white">Travaux Pratiques</h3>
+                                <p class="text-sm text-gray-200">Expériences éducatives</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="galerie.html" class="gallery-item group relative overflow-hidden rounded-2xl shadow-lg flex-shrink-0 w-80 cursor-pointer" data-category="evenements">
+                        <img src="new_images/549558774_794046653221611_4279691674683154186_n.jpg"
+                            alt="Cérémonie scolaire"
+                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-indigo-600 rounded-full mb-2">Cérémonies</span>
+                                <h3 class="text-lg font-bold text-white">Cérémonies Officielles</h3>
+                                <p class="text-sm text-gray-200">Moments solennels</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="galerie.html" class="gallery-item group relative overflow-hidden rounded-2xl shadow-lg flex-shrink-0 w-80 cursor-pointer" data-category="culture">
+                        <img src="new_images/550236872_794047496554860_1188177986531837562_n.jpg"
+                            alt="Activités culturelles"
+                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-amber-600 rounded-full mb-2">Culture</span>
+                                <h3 class="text-lg font-bold text-white">Activités Culturelles</h3>
+                                <p class="text-sm text-gray-200">Expression artistique</p>
+                            </div>
+                        </div>
+                    </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center p-4 cursor-zoom-out">
+            <button id="closeLightbox" class="absolute top-6 right-6 text-white text-4xl hover:text-red-500 transition-colors duration-200 focus:outline-none" aria-label="Fermer">
+                &times;
+            </button>
+            <button id="prevButton" class="absolute left-6 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-red-500 transition-colors duration-200 focus:outline-none" aria-label="Image précédente">
+                &larr;
+            </button>
+            <div class="relative max-h-[90vh] max-w-[90vw] flex items-center justify-center">
+                <img id="lightboxImage" src="" alt="" class="lightbox-image max-h-[90vh] max-w-[90vw] object-contain">
+                <div id="imageCaption" class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white text-center">
+                    <h3 id="imageTitle" class="text-xl font-bold"></h3>
+                    <p id="imageDescription" class="text-gray-300"></p>
+                </div>
+            </div>
+            <button id="nextButton" class="absolute right-6 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-red-500 transition-colors duration-200 focus:outline-none" aria-label="Image suivante">
+                &rarr;
+            </button>
+        </div>
+        </main>
+    </div> <!-- End of main-content -->
+    
+    <!-- Footer will be injected here by components.js -->
+
+    <!-- AOS Initialization -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Components JS already included in <head> with defer -->
+    
+    <!-- Initialize components -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            
+            // Include navbar and footer
+            includeNavbar();
+            includeFooter();
+            
+            // Initialize other components
+            initPageScripts();
+            
+            // Rest of your existing scripts...
+        // AOS Initialization
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // Close mobile menu when clicking on a nav link
+        const navLinks = document.querySelectorAll('.mobile-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Continuous Auto-scrolling Gallery Carousel (Marquee Style)
+        const carousel = document.getElementById('gallery-carousel');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        // Clone all items multiple times to create seamless infinite loop
+        for (let i = 0; i < 3; i++) {
+            galleryItems.forEach(item => {
+                const clone = item.cloneNode(true);
+                carousel.appendChild(clone);
+            });
+        }
+        
+        let scrollPosition = 0;
+        const scrollSpeed = 1.5; // pixels per frame (adjust for speed)
+        
+        function continuousScroll() {
+            scrollPosition += scrollSpeed;
+            
+            // Calculate total width of one set of items
+            const itemWidth = 320 + 24; // width (320px = w-80) + gap (24px = gap-6)
+            const resetPoint = itemWidth * galleryItems.length;
+            
+            // Seamless reset when first set scrolls out
+            if (scrollPosition >= resetPoint) {
+                scrollPosition = scrollPosition - resetPoint;
+            }
+            
+            carousel.style.transform = `translateX(-${scrollPosition}px)`;
+            requestAnimationFrame(continuousScroll);
+        }
+        
+        // Start continuous scroll immediately
+        continuousScroll();
+        
+        let displayedItems = Array.from(document.querySelectorAll('.gallery-item'));
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const imageTitle = document.getElementById('imageTitle');
+        const imageDescription = document.getElementById('imageDescription');
+        const closeLightbox = document.getElementById('closeLightbox');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        
+        let currentImageIndex = 0;
+
+        function setupLightbox() {
+            // Remove previous event listeners to prevent duplicates
+            document.querySelectorAll('.gallery-item img').forEach(img => {
+                const newImg = img.cloneNode(true);
+                img.parentNode.replaceChild(newImg, img);
+            });
+
+            document.querySelectorAll('.gallery-item img').forEach((img, index) => {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    currentImageIndex = displayedItems.findIndex(item => item.querySelector('img').src === img.src);
+                    openLightbox(currentImageIndex);
+                });
+            });
+        }
+        
+        function openLightbox(index) {
+            if (index < 0 || index >= displayedItems.length) return;
+            
+            const item = displayedItems[index];
+            const img = item.querySelector('img');
+            const title = item.querySelector('h3')?.textContent || '';
+            const description = item.querySelector('p')?.textContent || '';
+            
+            lightboxImage.src = img.src;
+            lightboxImage.alt = img.alt;
+            imageTitle.textContent = title;
+            imageDescription.textContent = description;
+            
+            document.body.style.overflow = 'hidden';
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            
+            closeLightbox.focus();
+        }
+        
+        function closeLightboxHandler() {
+            document.body.style.overflow = '';
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+        }
+        
+        function navigateLightbox(direction) {
+            let newIndex = currentImageIndex + direction;
+            
+            if (newIndex < 0) {
+                newIndex = displayedItems.length - 1;
+            } else if (newIndex >= displayedItems.length) {
+                newIndex = 0;
+            }
+            
+            openLightbox(newIndex);
+        }
+
+        // Event listeners for lightbox controls
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightboxHandler();
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('hidden')) {
+                if (e.key === 'Escape') {
+                    closeLightboxHandler();
+                } else if (e.key === 'ArrowLeft') {
+                    navigateLightbox(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateLightbox(1);
+                }
+            }
+        });
+
+        closeLightbox.addEventListener('click', closeLightboxHandler);
+        prevButton.addEventListener('click', () => navigateLightbox(-1));
+        nextButton.addEventListener('click', () => navigateLightbox(1));
+        });
+    </script>
+    
+    <!-- Light Streak Animation -->
+    <script src="js/light-streak.js"></script>
+    
+    <!-- Cambridge Floating Ad -->
+    <script src="js/cambridge-float.js"></script>
+</body>
+</html>
