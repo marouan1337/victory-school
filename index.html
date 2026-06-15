@@ -92,12 +92,13 @@
         
         .carousel-slide.active {
             opacity: 1;
+            z-index: 2;
         }
         
         .carousel-content {
             position: relative;
             z-index: 2;
-            background: rgba(0, 0, 0, 0.5);
+            background: transparent;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -228,6 +229,16 @@
     </style>
 </head>
 <body class="font-sans flex flex-col min-h-screen">
+    <!-- Brand Splash Screen (Renders Instantly) -->
+    <div id="splash-screen">
+        <div class="splash-logo-container">
+            <img src="Group 1491.svg" class="splash-logo" alt="École Victory Logo">
+        </div>
+        <div class="splash-loader">
+            <div class="splash-loader-bar"></div>
+        </div>
+    </div>
+
     <!-- Navigation Component -->
     <div data-include="components/navbar.html"></div>
     
@@ -244,9 +255,16 @@
         </div>
         
         <div class="hero-carousel">
+            <!-- Background Video -->
+            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0" poster="images/Classroom_scenes.jpeg">
+                <source src="vectory.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <!-- Premium Dark Overlay for text legibility -->
+            <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/55 z-[1]"></div>
+            
             <!-- Slide 1 -->
-            <div class="carousel-slide active" style="background-image: url('images/Classroom_scenes.jpeg');">
-                <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+            <div class="carousel-slide active">
                 <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
                     <!-- Floating Student Illustration (Desktop) -->
                     <!-- TODO: Add student illustration image here -->
@@ -295,21 +313,21 @@
             </div>
             
             <!-- Slide 2 -->
-            <div class="carousel-slide" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/sport_1.jpeg');">
+            <div class="carousel-slide">
                 <div class="carousel-content">
                     <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 animate-fadeInUp" style="animation-delay: 0.3s">Un Enseignement d'Excellence</h1>
                     <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl px-4 animate-fadeInUp" style="animation-delay: 0.6s">Notre programme éducatif complet prépare les élèves à réussir dans un monde en constante évolution.</p>
                     <a href="pedagogie.html" class="inline-block bg-red-800 hover:bg-red-700 text-white font-bold py-3 px-6 sm:px-8 rounded-md transition duration-300 text-sm sm:text-base animate-fadeInUp" style="animation-delay: 0.9s">Notre Pédagogie</a>
                 </div>
             </div>
-        </div>
-        
-        <!-- Slide 3 -->
-        <div class="carousel-slide" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/Community_events.jpeg');">
-            <div class="carousel-content">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 animate-fadeInUp" style="animation-delay: 0.3s">Une Communauté Éducative</h1>
-                <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl px-4 animate-fadeInUp" style="animation-delay: 0.6s">Rejoignez notre communauté bienveillante qui favorise l'épanouissement de chaque élève.</p>
-                <a href="contact.html" class="inline-block bg-red-800 hover:bg-red-700 text-white font-bold py-3 px-6 sm:px-8 rounded-md transition duration-300 text-sm sm:text-base animate-fadeInUp" style="animation-delay: 0.9s">Nous Contacter</a>
+            
+            <!-- Slide 3 -->
+            <div class="carousel-slide">
+                <div class="carousel-content">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 animate-fadeInUp" style="animation-delay: 0.3s">Une Communauté Éducative</h1>
+                    <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl px-4 animate-fadeInUp" style="animation-delay: 0.6s">Rejoignez notre communauté bienveillante qui favorise l'épanouissement de chaque élève.</p>
+                    <a href="contact.html" class="inline-block bg-red-800 hover:bg-red-700 text-white font-bold py-3 px-6 sm:px-8 rounded-md transition duration-300 text-sm sm:text-base animate-fadeInUp" style="animation-delay: 0.9s">Nous Contacter</a>
+                </div>
             </div>
         </div>
         

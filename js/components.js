@@ -523,6 +523,12 @@ async function loadPage(url, pushState = true) {
         const temp = document.createElement('div');
         temp.innerHTML = text;
         
+        // Remove splash screen from the fetched content to prevent it from rendering during SPA transition
+        const fetchedSplash = temp.querySelector('#splash-screen');
+        if (fetchedSplash) {
+            fetchedSplash.remove();
+        }
+        
         // Extract the main content (everything inside the body except the navbar)
         const newContent = temp.querySelector('body').innerHTML;
         
@@ -623,7 +629,29 @@ function highlightCurrentPage() {
     });
 }
 
+// Initialize brand splash screen
+function initSplashScreen() {
+    const splashEl = document.getElementById('splash-screen');
+    if (!splashEl) return;
+
+    // Disable body scroll while splash is active
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    // Fade out and remove splash screen after 5 seconds total (4.5s progress + 0.5s fade transition)
+    setTimeout(() => {
+        splashEl.classList.add('fade-out');
+        document.body.style.overflow = originalOverflow;
+        setTimeout(() => {
+            splashEl.remove();
+        }, 500); // Wait for the transition to finish (total 5000ms)
+    }, 4500);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Show brand splash screen on load
+    initSplashScreen();
+    
     // Initialize mainContent variable
     mainContent = document.getElementById('main-content');
     
