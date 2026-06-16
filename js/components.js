@@ -5,45 +5,83 @@ let mainContent;
 
 // Store the navbar HTML
 const navbarHTML = `
-<nav class="bg-white shadow-lg fixed top-0 left-0 w-full z-50">
+<!-- Style block to inject navbar-specific premium CSS styles -->
+<style>
+    /* Desktop Nav Link Styles and center-out underline micro-interaction */
+    .nav-link {
+        position: relative;
+        padding-bottom: 4px;
+        transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, #991b1b, #d97706);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-link:hover::after,
+    .nav-link.active-link::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+    .nav-link.active-link {
+        color: #991b1b !important;
+        font-weight: 600 !important;
+    }
+</style>
+
+<nav id="main-navbar" class="bg-white/75 backdrop-blur-md border-b border-transparent fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 shadow-sm shadow-gray-100/40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center">
+        <div class="flex justify-between items-center">
+            <!-- Left Side: Brand Logo -->
             <div class="flex-shrink-0 flex items-center">
-                <a href="index.html" class="flex items-center space-x-2 group">
-                    <!-- School Logo -->
-                    <div class="flex-shrink-0 h-10 w-auto">
-                        <img src="logo/Group 947.png" alt="École Victory Logo" class="h-full w-auto">
+                <a href="index.html" class="flex items-center space-x-3 group" data-navigation>
+                    <!-- School Logo Container -->
+                    <div class="flex-shrink-0 h-10 w-auto bg-white rounded-lg p-0.5 shadow-sm border border-gray-100 group-hover:scale-105 group-hover:shadow transition-all duration-300">
+                        <img src="logo/Group 947.png" alt="École Victory Logo" class="h-full w-auto object-contain">
                     </div>
-                    <span class="text-xl md:text-2xl font-bold text-red-900 transition-colors duration-300 group-hover:text-red-700">
+                    <!-- Brand Name -->
+                    <span class="text-xl md:text-2xl font-extrabold tracking-wider bg-gradient-to-r from-red-950 via-red-900 to-red-950 bg-clip-text text-transparent transition-all duration-300 group-hover:from-red-700 group-hover:to-red-600">
                         ÉCOLE VICTORY
                     </span>
                 </a>
             </div>
+            
+            <!-- Center Side: Navigation Links (Desktop) -->
             <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
-                <a href="index.html" class="text-gray-700 hover:text-red-700 font-medium nav-link" data-page="index">
+                <a href="index.html" class="text-gray-700 hover:text-red-800 font-medium nav-link transition-colors duration-300" data-page="index" data-navigation>
                     Accueil
                 </a>
-                <a href="inscriptions.html" class="text-gray-700 hover:text-red-700 font-medium nav-link" data-page="inscriptions">
+                <a href="inscriptions.html" class="text-gray-700 hover:text-red-800 font-medium nav-link transition-colors duration-300" data-page="inscriptions" data-navigation>
                     Inscriptions
                 </a>
-                <a href="pedagogie.html" class="text-gray-700 hover:text-red-700 font-medium nav-link" data-page="pedagogie">
+                <a href="pedagogie.html" class="text-gray-700 hover:text-red-800 font-medium nav-link transition-colors duration-300" data-page="pedagogie" data-navigation>
                     Pédagogie
                 </a>
-                <a href="vie-scolaire.html" class="text-gray-700 hover:text-red-700 font-medium nav-link" data-page="vie-scolaire">
+                <a href="vie-scolaire.html" class="text-gray-700 hover:text-red-800 font-medium nav-link transition-colors duration-300" data-page="vie-scolaire" data-navigation>
                     Vie scolaire
                 </a>
-                <a href="galerie.html" class="text-gray-700 hover:text-red-700 font-medium nav-link" data-page="galerie">
+                <a href="galerie.html" class="text-gray-700 hover:text-red-800 font-medium nav-link transition-colors duration-300" data-page="galerie" data-navigation>
                     Galerie
                 </a>
-                <a href="contact.html" class="text-gray-700 hover:text-red-700 font-medium nav-link" data-page="contact">
+                <a href="contact.html" class="text-gray-700 hover:text-red-800 font-medium nav-link transition-colors duration-300" data-page="contact" data-navigation>
                     Contact
                 </a>
-                <a href="inscriptions.html" class="ml-4 px-4 py-2 bg-red-800 text-white rounded-lg hover:bg-red-700 transition-colors duration-300">
+                <!-- Modern CTA Button -->
+                <a href="inscriptions.html" class="ml-4 inline-flex items-center justify-center px-5 py-2.5 bg-gradient-to-r from-red-800 to-red-700 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-red-800/20 hover:from-red-900 hover:to-red-800 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300" data-navigation>
                     S'inscrire
                 </a>
             </div>
-            <div class="md:hidden">
-                <button type="button" id="mobile-menu-button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-red-700 focus:outline-none">
+            
+            <!-- Mobile Menu Button (Hamburger) -->
+            <div class="md:hidden flex items-center">
+                <button type="button" id="mobile-menu-button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-xl text-gray-700 hover:text-red-800 hover:bg-red-50 focus:outline-none transition-all duration-300" aria-label="Menu principal" aria-expanded="false">
                     <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -51,107 +89,110 @@ const navbarHTML = `
             </div>
         </div>
     </div>
+    
     <!-- Mobile menu - Modern Sidebar -->
     <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[9999] hidden">
         <!-- Backdrop -->
-        <div class="mobile-menu-backdrop fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"></div>
+        <div class="mobile-menu-backdrop fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300"></div>
         
         <!-- Sidebar -->
-        <div class="mobile-menu-sidebar fixed top-0 right-0 h-full w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto">
-            <!-- Header -->
-            <div class="bg-gradient-to-r from-red-800 to-red-900 p-6 flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="h-12 w-12 bg-white rounded-lg p-2">
-                        <img src="logo/Group 947.png" alt="École Victory" class="w-full h-full object-contain">
+        <div class="mobile-menu-sidebar fixed top-0 right-0 h-full w-80 bg-white/95 backdrop-blur-md shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto border-l border-gray-100 flex flex-col justify-between">
+            <div>
+                <!-- Header -->
+                <div class="bg-gradient-to-r from-red-900 to-red-800 p-6 flex items-center justify-between shadow-md">
+                    <div class="flex items-center space-x-3">
+                        <div class="h-12 w-12 bg-white rounded-xl p-1.5 shadow-md">
+                            <img src="logo/Group 947.png" alt="École Victory" class="w-full h-full object-contain">
+                        </div>
+                        <div>
+                            <h2 class="text-white font-extrabold text-lg tracking-wide">École Victory</h2>
+                            <p class="text-red-100 text-xs tracking-wider opacity-90">Excellence & Innovation</p>
+                        </div>
                     </div>
-                    <div>
-                        <h2 class="text-white font-bold text-lg">École Victory</h2>
-                        <p class="text-red-100 text-xs">Excellence & Innovation</p>
-                    </div>
+                    <button id="mobile-menu-close" class="text-white/80 hover:text-white hover:bg-white/10 rounded-xl transition-all p-2" aria-label="Fermer le menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
                 </div>
-                <button id="mobile-menu-close" class="text-white hover:text-red-200 transition-colors p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
+
+                <!-- Navigation Links -->
+                <nav class="py-6 px-4">
+                    <div class="space-y-1.5">
+                        <a href="index.html" class="mobile-nav-link group flex items-center px-4 py-3.5 text-gray-700 hover:bg-red-50 hover:text-red-800 rounded-xl transition-all duration-200" data-navigation>
+                            <svg class="w-5 h-5 mr-3.5 text-gray-400 group-hover:text-red-800 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                            </svg>
+                            <span class="font-semibold">Accueil</span>
+                        </a>
+                        
+                        <a href="inscriptions.html" class="mobile-nav-link group flex items-center px-4 py-3.5 text-gray-700 hover:bg-red-50 hover:text-red-800 rounded-xl transition-all duration-200" data-navigation>
+                            <svg class="w-5 h-5 mr-3.5 text-gray-400 group-hover:text-red-800 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            <span class="font-semibold">Inscriptions</span>
+                        </a>
+                        
+                        <a href="pedagogie.html" class="mobile-nav-link group flex items-center px-4 py-3.5 text-gray-700 hover:bg-red-50 hover:text-red-800 rounded-xl transition-all duration-200" data-navigation>
+                            <svg class="w-5 h-5 mr-3.5 text-gray-400 group-hover:text-red-800 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                            <span class="font-semibold">Pédagogie</span>
+                        </a>
+                        
+                        <a href="vie-scolaire.html" class="mobile-nav-link group flex items-center px-4 py-3.5 text-gray-700 hover:bg-red-50 hover:text-red-800 rounded-xl transition-all duration-200" data-navigation>
+                            <svg class="w-5 h-5 mr-3.5 text-gray-400 group-hover:text-red-800 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                            <span class="font-semibold">Vie scolaire</span>
+                        </a>
+                        
+                        <a href="galerie.html" class="mobile-nav-link group flex items-center px-4 py-3.5 text-gray-700 hover:bg-red-50 hover:text-red-800 rounded-xl transition-all duration-200" data-navigation>
+                            <svg class="w-5 h-5 mr-3.5 text-gray-400 group-hover:text-red-800 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            <span class="font-semibold">Galerie</span>
+                        </a>
+                        
+                        <a href="contact.html" class="mobile-nav-link group flex items-center px-4 py-3.5 text-gray-700 hover:bg-red-50 hover:text-red-800 rounded-xl transition-all duration-200" data-navigation>
+                            <svg class="w-5 h-5 mr-3.5 text-gray-400 group-hover:text-red-800 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span class="font-semibold">Contact</span>
+                        </a>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <div class="mt-8">
+                        <a href="inscriptions.html" class="block w-full px-6 py-4 text-center text-white font-bold bg-gradient-to-r from-red-800 to-red-700 rounded-xl hover:shadow-lg hover:shadow-red-800/30 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300" data-navigation>
+                            <span class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                                S'inscrire maintenant
+                            </span>
+                        </a>
+                    </div>
+                </nav>
             </div>
 
-            <!-- Navigation Links -->
-            <nav class="py-6">
-                <div class="space-y-1 px-4">
-                    <a href="index.html" class="mobile-nav-link group flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-lg transition-all duration-200">
-                        <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                        </svg>
-                        <span class="font-medium">Accueil</span>
-                    </a>
-                    
-                    <a href="inscriptions.html" class="mobile-nav-link group flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-lg transition-all duration-200">
-                        <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                        <span class="font-medium">Inscriptions</span>
-                    </a>
-                    
-                    <a href="pedagogie.html" class="mobile-nav-link group flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-lg transition-all duration-200">
-                        <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                        </svg>
-                        <span class="font-medium">Pédagogie</span>
-                    </a>
-                    
-                    <a href="vie-scolaire.html" class="mobile-nav-link group flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-lg transition-all duration-200">
-                        <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                        </svg>
-                        <span class="font-medium">Vie scolaire</span>
-                    </a>
-                    
-                    <a href="galerie.html" class="mobile-nav-link group flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-lg transition-all duration-200">
-                        <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        <span class="font-medium">Galerie</span>
-                    </a>
-                    
-                    <a href="contact.html" class="mobile-nav-link group flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-lg transition-all duration-200">
-                        <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
-                        <span class="font-medium">Contact</span>
-                    </a>
-                </div>
-
-                <!-- CTA Button -->
-                <div class="px-4 mt-6">
-                    <a href="inscriptions.html" class="block w-full px-6 py-4 text-center text-white font-semibold bg-gradient-to-r from-red-700 to-red-900 rounded-xl hover:from-red-800 hover:to-red-950 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                        <span class="flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                            </svg>
-                            S'inscrire maintenant
-                        </span>
-                    </a>
-                </div>
-            </nav>
-
-            <!-- Footer Section -->
-            <div class="border-t border-gray-200 mt-6 pt-6 px-4">
+            <!-- Footer Section inside Sidebar -->
+            <div class="border-t border-gray-100 bg-gray-50/50 p-6 space-y-6">
                 <!-- Contact Info -->
-                <div class="mb-6">
-                    <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Contact rapide</h3>
-                    <div class="space-y-2">
-                        <a href="tel:+212661082421" class="flex items-center text-sm text-gray-600 hover:text-red-700">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="space-y-3">
+                    <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Contact rapide</h3>
+                    <div class="space-y-2.5">
+                        <a href="tel:+212661082421" class="flex items-center text-sm text-gray-600 hover:text-red-800 transition-colors font-medium">
+                            <svg class="w-4 h-4 mr-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
                             +212 661 082 421
                         </a>
-                        <a href="tel:+212808595932" class="flex items-center text-sm text-gray-600 hover:text-red-700 ml-6">
+                        <a href="tel:+212808595932" class="flex items-center text-sm text-gray-600 hover:text-red-800 transition-colors font-medium ml-6.5">
                             +212 808 595 932
                         </a>
-                        <a href="mailto:etablissementvictory@gmail.com" class="flex items-center text-sm text-gray-600 hover:text-red-700">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <a href="mailto:etablissementvictory@gmail.com" class="flex items-center text-sm text-gray-650 hover:text-red-800 transition-colors font-medium">
+                            <svg class="w-4 h-4 mr-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
                             etablissementvictory@gmail.com
@@ -159,44 +200,14 @@ const navbarHTML = `
                     </div>
                 </div>
 
-                <!-- Social Media -->
-                <div class="mb-6">
-                    <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Suivez-nous</h3>
-                    <div class="flex space-x-3">
-                        <a href="#" class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-gray-600 hover:bg-red-700 hover:text-white transition-all duration-300">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-gray-600 hover:bg-red-700 hover:text-white transition-all duration-300">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
-                                <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-gray-600 hover:bg-red-700 hover:text-white transition-all duration-300">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-gray-600 hover:bg-red-700 hover:text-white transition-all duration-300">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
                 <!-- Cambridge Badge -->
-                <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-xs font-semibold text-blue-900">Certification</p>
-                            <p class="text-xs text-blue-700">Cambridge English</p>
-                        </div>
-                        <div class="bg-white rounded p-1">
-                            <img src="logo/cambridge_logo12.jpg" alt="Cambridge" class="w-8 h-8 object-contain">
-                        </div>
+                <div class="bg-gradient-to-r from-blue-50/70 to-blue-100/70 rounded-xl p-3.5 border border-blue-100 flex items-center justify-between shadow-sm">
+                    <div>
+                        <p class="text-[10px] font-bold text-blue-900 uppercase tracking-wider">Certification</p>
+                        <p class="text-xs font-semibold text-blue-800">Cambridge English</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-1.5 shadow-sm border border-blue-50">
+                        <img src="logo/cambridge_logo12.jpg" alt="Cambridge" class="w-8 h-8 object-contain">
                     </div>
                 </div>
             </div>
@@ -357,7 +368,7 @@ const footerHTML = `
                         </div>
                         <div>
                             <p class="font-semibold text-white mb-1">Adresse</p>
-                            <a href="https://www.google.com/maps/place/%C3%89tablissement+VICTORY/@27.1547808,-13.1987555,17z" target="_blank" rel="noopener noreferrer" class="text-sm hover:text-red-400 transition-colors">Établissement VICTORY<br>Avenue Sayf Al Dawla, Rue Assawak N° 04, Laâyoune</a>
+                            <a href="https://maps.app.goo.gl/8Vny7P35xZ7ezqU87" target="_blank" rel="noopener noreferrer" class="text-sm hover:text-red-400 transition-colors">Établissement VICTORY<br>Avenue Sayf Al Dawla, Rue Assawak N° 04, Laâyoune</a>
                         </div>
                     </div>
                     <div class="flex items-start gap-3 group">
@@ -426,6 +437,7 @@ function includeNavbar() {
     // Initialize behavior after injection
     initMobileMenu();
     highlightCurrentPage();
+    initNavbarScroll();
 }
 
 // Function to include footer on all pages
@@ -561,6 +573,7 @@ async function loadPage(url, pushState = true) {
         
         // Update the active state of navigation links
         highlightCurrentPage();
+        handleNavbarScroll();
         
     } catch (error) {
         console.error('Error loading page:', error);
@@ -609,6 +622,27 @@ window.addEventListener('popstate', function(event) {
     }
 });
 
+// Global handle scroll function for dynamic heights & styles
+function handleNavbarScroll() {
+    const navbar = document.getElementById('main-navbar');
+    if (!navbar) return;
+    
+    if (window.scrollY > 20) {
+        navbar.classList.remove('py-4', 'bg-white/75', 'border-transparent');
+        navbar.classList.add('py-2.5', 'bg-white/95', 'shadow-md', 'border-gray-200/50');
+    } else {
+        navbar.classList.remove('py-2.5', 'bg-white/95', 'shadow-md', 'border-gray-200/50');
+        navbar.classList.add('py-4', 'bg-white/75', 'border-transparent');
+    }
+}
+
+// Function to initialize dynamic navbar scroll effects
+function initNavbarScroll() {
+    window.removeEventListener('scroll', handleNavbarScroll);
+    window.addEventListener('scroll', handleNavbarScroll);
+    handleNavbarScroll();
+}
+
 // Highlight current page in navigation
 function highlightCurrentPage() {
     const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
@@ -616,8 +650,11 @@ function highlightCurrentPage() {
     // Highlight desktop nav links
     document.querySelectorAll('.nav-link').forEach(link => {
         if (link.getAttribute('data-page') === currentPage) {
-            link.classList.add('text-red-900', 'font-semibold');
+            link.classList.add('active-link');
             link.classList.remove('text-gray-700');
+        } else {
+            link.classList.remove('active-link');
+            link.classList.add('text-gray-700');
         }
     });
     
@@ -627,8 +664,11 @@ function highlightCurrentPage() {
         const linkPage = linkHref === 'index' || linkHref === '/' ? 'index' : linkHref;
         
         if (linkPage === currentPage || (currentPage === '' && linkPage === 'index')) {
-            link.classList.add('bg-red-100', 'text-red-900', 'border-l-4', 'border-red-700');
+            link.classList.add('bg-red-50', 'text-red-800', 'border-l-4', 'border-red-700', 'font-bold');
             link.classList.remove('hover:bg-red-50');
+        } else {
+            link.classList.remove('bg-red-50', 'text-red-800', 'border-l-4', 'border-red-700', 'font-bold');
+            link.classList.add('hover:bg-red-50');
         }
     });
 }
