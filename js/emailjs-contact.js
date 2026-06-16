@@ -199,7 +199,7 @@
                 phone: formData.get('phone'),
                 subject: formData.get('subject'),
                 message: formData.get('message'),
-                to_email: 'contact@victory-school.com'
+                to_email: 'etablissementvictory@gmail.com'
             };
             
             console.log('📤 Sending email with params:', templateParams);

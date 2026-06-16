@@ -141,17 +141,20 @@ const navbarHTML = `
                 <div class="mb-6">
                     <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Contact rapide</h3>
                     <div class="space-y-2">
-                        <a href="tel:+212808595932" class="flex items-center text-sm text-gray-600 hover:text-red-700">
+                        <a href="tel:+212661082421" class="flex items-center text-sm text-gray-600 hover:text-red-700">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
+                            +212 661 082 421
+                        </a>
+                        <a href="tel:+212808595932" class="flex items-center text-sm text-gray-600 hover:text-red-700 ml-6">
                             +212 808 595 932
                         </a>
-                        <a href="mailto:contact@victory-school.com" class="flex items-center text-sm text-gray-600 hover:text-red-700">
+                        <a href="mailto:etablissementvictory@gmail.com" class="flex items-center text-sm text-gray-600 hover:text-red-700">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
-                            contact@victory-school.com
+                            etablissementvictory@gmail.com
                         </a>
                     </div>
                 </div>
@@ -261,7 +264,7 @@ const footerHTML = `
                             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                         </svg>
                     </a>
-                    <a href="https://wa.me/21266979929" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-800 hover:bg-red-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                    <a href="https://wa.me/212666979929" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-800 hover:bg-red-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
                         <svg class="w-5 h-5 fill-current text-white" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M20.52 3.48A11.93 11.93 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.1 1.52 5.86L0 24l6.28-1.65A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 21.5c-1.93 0-3.76-.54-5.35-1.57l-.38-.24-3.73.98.99-3.64-.25-.37A9.5 9.5 0 1121.5 12c0 5.24-4.26 9.5-9.5 9.5zm5.12-6.86c-.17.49-1 1.04-1.39 1.1-.38.06-.86.09-1.36-.08-.32-.1-.72-.24-1.24-.46-2.18-.91-3.6-3.15-3.71-3.3-.11-.15-.89-1.18-.89-2.25 0-1.07.56-1.6.75-1.82.2-.22.43-.28.57-.28.14 0 .29 0 .41.01.13.01.31-.05.49.38.17.42.59 1.45.64 1.56.05.11.09.23.02.36-.07.14-.11.22-.22.35-.11.12-.23.27-.33.37-.11.11-.23.23-.1.45.13.22.57.94 1.23 1.52.85.75 1.56 1 1.78 1.11.22.11.35.09.48-.06.13-.15.54-.64.69-.85.15-.22.29-.18.49-.11.2.07 1.25.59 1.46.7.21.11.36.16.41.25.05.09.05.52-.12 1z"/>
                         </svg>
@@ -354,7 +357,7 @@ const footerHTML = `
                         </div>
                         <div>
                             <p class="font-semibold text-white mb-1">Adresse</p>
-                            <a href="https://www.google.com/maps/place/%C3%89tablissement+VICTORY/@27.1552593,-13.1999605,390m/data=!3m1!1e3!4m6!3m5!1s0xc3773d568c56aa3:0x50d934990edd37e3!8m2!3d27.1547808!4d-13.1987555!16s%2Fg%2F11t2zndmq9!5m2!1e1!1e4?entry=ttu" target="_blank" rel="noopener noreferrer" class="text-sm hover:text-red-400 transition-colors">Établissement VICTORY<br>Laâyoune, Morocco</a>
+                            <a href="https://www.google.com/maps/place/%C3%89tablissement+VICTORY/@27.1547808,-13.1987555,17z" target="_blank" rel="noopener noreferrer" class="text-sm hover:text-red-400 transition-colors">Établissement VICTORY<br>Avenue Sayf Al Dawla, Rue Assawak N° 04, Laâyoune</a>
                         </div>
                     </div>
                     <div class="flex items-start gap-3 group">
@@ -365,6 +368,7 @@ const footerHTML = `
                         </div>
                         <div>
                             <p class="font-semibold text-white mb-1">Téléphone</p>
+                            <a href="tel:+212661082421" class="text-sm hover:text-red-400 transition-colors">+212 661 082 421</a><br>
                             <a href="tel:+212808595932" class="text-sm hover:text-red-400 transition-colors">+212 808 595 932</a>
                         </div>
                     </div>
@@ -376,7 +380,7 @@ const footerHTML = `
                         </div>
                         <div>
                             <p class="font-semibold text-white mb-1">Email</p>
-                            <a href="mailto:contact@victory-school.com" class="text-sm hover:text-red-400 transition-colors">contact@victory-school.com</a>
+                            <a href="mailto:etablissementvictory@gmail.com" class="text-sm hover:text-red-400 transition-colors">etablissementvictory@gmail.com</a>
                         </div>
                     </div>
                 </address>
