@@ -41,15 +41,11 @@ const navbarHTML = `
         <div class="flex justify-between items-center">
             <!-- Left Side: Brand Logo -->
             <div class="flex-shrink-0 flex items-center">
-                <a href="index.html" class="flex items-center space-x-3 group" data-navigation>
+                <a href="index.html" class="flex items-center group" data-navigation>
                     <!-- School Logo Container -->
-                    <div class="flex-shrink-0 h-10 w-auto bg-white rounded-lg p-0.5 shadow-sm border border-gray-100 group-hover:scale-105 group-hover:shadow transition-all duration-300">
-                        <img src="logo/Group 947.png" alt="École Victory Logo" class="h-full w-auto object-contain">
+                    <div class="h-10 md:h-12 w-auto transition-transform duration-300 group-hover:scale-105">
+                        <img src="logo/new_full_logo.svg" alt="École Victory Logo" class="h-full w-auto object-contain">
                     </div>
-                    <!-- Brand Name -->
-                    <span class="text-xl md:text-2xl font-extrabold tracking-wider bg-gradient-to-r from-red-950 via-red-900 to-red-950 bg-clip-text text-transparent transition-all duration-300 group-hover:from-red-700 group-hover:to-red-600">
-                        ÉCOLE VICTORY
-                    </span>
                 </a>
             </div>
             
@@ -103,13 +99,9 @@ const navbarHTML = `
             <div>
                 <!-- Header -->
                 <div class="bg-gradient-to-r from-red-900 to-red-800 p-6 flex items-center justify-between shadow-md">
-                    <div class="flex items-center space-x-3">
-                        <div class="h-12 w-12 bg-white rounded-xl p-1.5 shadow-md">
-                            <img src="logo/Group 947.png" alt="École Victory" class="w-full h-full object-contain">
-                        </div>
-                        <div>
-                            <h2 class="text-white font-extrabold text-lg tracking-wide">École Victory</h2>
-                            <p class="text-red-100 text-xs tracking-wider opacity-90">Excellence & Innovation</p>
+                    <div class="flex items-center">
+                        <div class="h-10 w-auto">
+                            <img src="logo/new_full_white_logo.svg" alt="École Victory Logo" class="h-full w-auto object-contain">
                         </div>
                     </div>
                     <button id="mobile-menu-close" class="text-white/80 hover:text-white hover:bg-white/10 rounded-xl transition-all p-2" aria-label="Fermer le menu">
@@ -262,11 +254,10 @@ const footerHTML = `
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             <!-- About Section -->
             <div class="space-y-4">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-lg p-1">
-                        <img src="logo/Group 947.png" alt="École Victory" class="w-full h-full object-contain">
+                <div class="flex items-center mb-4">
+                    <div class="h-14 w-auto transition-transform duration-300 hover:scale-102">
+                        <img src="logo/new_full_white_logo.svg" alt="École Victory Logo" class="h-full w-auto object-contain">
                     </div>
-                    <h3 class="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">École Victory</h3>
                 </div>
                 <p class="text-gray-400 leading-relaxed">Établissement d'enseignement d'excellence à Laâyoune, dédié à former les leaders de demain avec une préparation certifiée Cambridge.</p>
                 <div class="flex gap-3 pt-2">
