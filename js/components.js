@@ -125,6 +125,7 @@ const navbarHTML = `
             </div>
         </div>
     </div>
+</nav>
     
     <!-- Mobile menu - Modern Sidebar -->
     <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[9999] hidden">
@@ -262,7 +263,6 @@ const navbarHTML = `
             </div>
         </div>
     </div>
-</nav>
 `;
 
 // Store the footer HTML
