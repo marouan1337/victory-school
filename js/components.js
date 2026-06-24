@@ -614,12 +614,29 @@ async function loadPage(url, pushState = true) {
             mainContent.innerHTML = newContent;
             // Trigger any necessary JavaScript for the new page
             initPageScripts();
+            
+            // Refresh AOS after images in the new content load
+            const images = mainContent.querySelectorAll('img');
+            if (images.length > 0) {
+                images.forEach(img => {
+                    if (!img.complete) {
+                        img.addEventListener('load', () => {
+                            if (window.AOS) window.AOS.refresh();
+                        });
+                        img.addEventListener('error', () => {
+                            if (window.AOS) window.AOS.refresh();
+                        });
+                    }
+                });
+            }
+
             // Scroll to top
             window.scrollTo(0, 0);
             // Fade in the new content
             setTimeout(() => {
                 mainContent.style.opacity = '1';
                 mainContent.style.pointerEvents = 'auto';
+                if (window.AOS) window.AOS.refresh();
             }, 50);
         }
         
@@ -651,13 +668,14 @@ function attachNavigationListeners() {
 }
 
 function initPageScripts() {
-    // Re-initialize AOS for new content
+    // Re-initialize and refresh AOS for new content
     if (window.AOS) {
-        AOS.init({
+        window.AOS.init({
             duration: 800,
             easing: 'ease-in-out',
             once: true
         });
+        window.AOS.refreshHard();
     }
     
     // Re-attach navigation event listeners
@@ -740,6 +758,9 @@ function initSplashScreen() {
         document.body.style.overflow = originalOverflow;
         setTimeout(() => {
             splashEl.remove();
+            if (window.AOS) {
+                window.AOS.refresh();
+            }
         }, 500); // Wait for the transition to finish (total 5000ms)
     }, 4500);
 }
@@ -796,4 +817,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Log initialization
     console.log('Components initialized');
+});
+
+// Refresh AOS on window load to handle late-loading elements/images
+window.addEventListener('load', function() {
+    if (window.AOS) {
+        window.AOS.refresh();
+    }
 });
