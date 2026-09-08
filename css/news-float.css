@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Opening Floating Announcement for news.jpg
+   Pure & Minimalist Floating Image Modal - École Victory
+   ========================================================================== */
+
+.news-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.68);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease;
+}
+
+.news-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.news-modal-container {
+    position: relative;
+    max-width: min(90vw, 560px);
+    max-height: 88vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.news-modal-overlay.active .news-modal-container {
+    transform: scale(1) translateY(0);
+}
+
+.news-modal-img {
+    max-width: 100%;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.15);
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.news-modal-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 36px;
+    height: 36px;
+    background: #ffffff;
+    color: #1f2937;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    font-weight: bold;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+}
+
+.news-modal-close:hover {
+    background: #991b1b;
+    color: #ffffff;
+    transform: scale(1.1) rotate(90deg);
+}
+
+@media (max-width: 640px) {
+    .news-modal-container {
+        max-width: 92vw;
+        max-height: 82vh;
+    }
+    .news-modal-img {
+        max-height: 78vh;
+        border-radius: 12px;
+    }
+    .news-modal-close {
+        top: -12px;
+        right: -12px;
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+}

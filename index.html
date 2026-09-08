@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/light-streak.css">
     <link rel="stylesheet" href="css/cambridge-float.css">
+    <link rel="stylesheet" href="css/news-float.css">
     
     <!-- Preload critical animations -->
     <link rel="preload" href="css/animations.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -607,7 +608,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8 sm:mb-12" data-aos="fade-up">
                 <span class="inline-block px-4 py-1.5 text-sm font-semibold text-red-800 bg-red-100/85 backdrop-blur-sm rounded-full mb-4">
-                    📢 Communiqués & Actualités
+                    <i class="fas fa-bullhorn mr-2"></i>Communiqués & Actualités
                 </span>
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                     Dernières <span class="text-red-800">Actualités</span>
@@ -616,7 +617,35 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
-                <!-- Card 1 -->
+                <!-- Card 1: Official Start of School Year (news.jpg) -->
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-305 flex flex-col border border-gray-100 group">
+                    <div class="h-48 overflow-hidden relative bg-gray-900">
+                        <img src="news.jpg" alt="Rentrée Scolaire 2026-2027 - Démarrage Effectif" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-red-800 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-sm">
+                            Administration • Officiel
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="text-[11px] text-gray-400 font-semibold mb-2 flex items-center">
+                            <i class="far fa-calendar-alt mr-1.5"></i> 07 Septembre 2026
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 group-hover:text-red-800 transition-colors mb-1 line-clamp-2">
+                            Rentrée Scolaire 2026 - 2027 : Démarrage Effectif des Cours
+                        </h3>
+                        <div class="text-xs font-bold text-red-800 mb-2" dir="rtl">
+                            الانطلاقة الفعلية للدراسة برسم الموسم الدراسي
+                        </div>
+                        <p class="text-gray-600 text-sm mb-5 leading-relaxed line-clamp-3">
+                            L'administration informe les parents et élèves que la rentrée scolaire effective a démarré le 7 septembre 2026. La présence et l'assiduité sont obligatoires.
+                        </p>
+                        <a href="actualites.html" class="mt-auto self-start inline-flex items-center text-sm text-red-800 font-bold hover:text-red-900 group/btn transition-colors" data-navigation>
+                            Lire l'annonce complète
+                            <i class="fas fa-arrow-right ml-1 text-xs transform group-hover/btn:translate-x-0.5 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Practical Information -->
                 <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-305 flex flex-col border border-gray-100 group">
                     <div class="h-48 overflow-hidden relative">
                         <img src="annoncements/Rentree-scolaire-2026-2027.png" alt="Rentrée Scolaire" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -641,7 +670,7 @@
                     </div>
                 </div>
 
-                <!-- Card 2 -->
+                <!-- Card 3: Bac 2026 Results -->
                 <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-305 flex flex-col border border-gray-100 group">
                     <div class="h-48 overflow-hidden relative bg-gray-50">
                             <img src="annoncements/R%C3%A9sultats_du_Bac_2026.png" alt="Résultats Baccalauréat 2026" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -658,31 +687,6 @@
                         </h3>
                         <p class="text-gray-600 text-sm mb-5 leading-relaxed line-clamp-3">
                             Nous félicitons chaleureusement nos bacheliers avec un taux de réussite de 99% en Sciences Économiques et de 86% en Sciences Physiques et Chimiques !
-                        </p>
-                        <a href="actualites.html" class="mt-auto self-start inline-flex items-center text-sm text-red-800 font-bold hover:text-red-900 group/btn transition-colors" data-navigation>
-                            Lire la suite
-                            <i class="fas fa-arrow-right ml-1 text-xs transform group-hover/btn:translate-x-0.5 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-305 flex flex-col border border-gray-100 group">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="new_images/547485102_794041689888774_5734702051269881084_n.jpg" alt="Tournoi Sportif" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-3 left-3 bg-green-100 text-green-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md">
-                            Vie Scolaire
-                        </span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="text-[11px] text-gray-400 font-semibold mb-2 flex items-center">
-                            <i class="far fa-calendar-alt mr-1.5"></i> 08 Juin 2026
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 group-hover:text-red-800 transition-colors mb-3 line-clamp-2">
-                            Grand Tournoi Sportif Inter-Écoles 2026
-                        </h3>
-                        <p class="text-gray-600 text-sm mb-5 leading-relaxed line-clamp-3">
-                            Nos sélections de football et de basketball participeront au grand tournoi régional ce week-end. Venez nombreux encourager nos couleurs !
                         </p>
                         <a href="actualites.html" class="mt-auto self-start inline-flex items-center text-sm text-red-800 font-bold hover:text-red-900 group/btn transition-colors" data-navigation>
                             Lire la suite
@@ -1246,5 +1250,8 @@
     
     <!-- Cambridge Floating Ad -->
     <script src="js/cambridge-float.js"></script>
+    
+    <!-- Opening News Floating Announcement Modal -->
+    <script src="js/news-float.js"></script>
 </body>
 </html>
