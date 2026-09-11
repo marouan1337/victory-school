@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/light-streak.css">
     <link rel="stylesheet" href="css/cambridge-float.css">
     <link rel="stylesheet" href="css/news-float.css">
+    <link rel="stylesheet" href="css/partners-marquee.css">
     
     <!-- Preload critical animations -->
     <link rel="preload" href="css/animations.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -352,6 +353,95 @@
             <button class="carousel-dot active" aria-label="Afficher la diapositive 1"></button>
             <button class="carousel-dot" aria-label="Afficher la diapositive 2"></button>
             <button class="carousel-dot" aria-label="Afficher la diapositive 3"></button>
+        </div>
+    </section>
+
+    <!-- Partners & Accreditations Marquee Section -->
+    <section class="partners-section" aria-label="Nos partenaires et certifications">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4 sm:mb-6">
+            <div class="text-center" data-aos="fade-up" data-aos-duration="600">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1 text-xs sm:text-sm font-semibold text-red-800 bg-red-50 rounded-full border border-red-100 tracking-wide uppercase">
+                    <span class="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse"></span>
+                    Nos Partenaires &amp; Certifications
+                </span>
+                <p class="mt-2 text-xs sm:text-sm text-gray-500 font-medium">Ils nous font confiance et accompagnent l'excellence éducative de nos élèves</p>
+            </div>
+        </div>
+
+        <!-- Infinite Marquee Slider with Fade Masks -->
+        <div class="partners-marquee-container" data-aos="fade-up" data-aos-delay="100" data-aos-duration="600">
+            <!-- Left Gradient Fade Mask -->
+            <div class="partners-gradient-mask partners-gradient-mask-left"></div>
+            
+            <!-- Continuous Scrolling Track -->
+            <div class="partners-marquee-track">
+                <!-- Group 1 -->
+                <div class="partners-group">
+                    <div class="partner-item" title="Cambridge Assessment English">
+                        <img src="partners-logos/cambridge-assessment.svg" alt="Cambridge Assessment English" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-item" title="Groupe OCP">
+                        <img src="partners-logos/ocp-logo.svg" alt="Groupe OCP" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-item" title="IFESSP Institut">
+                        <img src="partners-logos/ifessp-institute.svg" alt="IFESSP Institut" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-item" title="Club MindShift">
+                        <img src="partners-logos/Club.svg" alt="Club MindShift" class="partner-logo" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Group 2 -->
+                <div class="partners-group" aria-hidden="true">
+                    <div class="partner-item" title="Cambridge Assessment English">
+                        <img src="partners-logos/cambridge-assessment.svg" alt="Cambridge Assessment English" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-item" title="Groupe OCP">
+                        <img src="partners-logos/ocp-logo.svg" alt="Groupe OCP" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-item" title="IFESSP Institut">
+                        <img src="partners-logos/ifessp-institute.svg" alt="IFESSP Institut" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-item" title="Club MindShift">
+                        <img src="partners-logos/Club.svg" alt="Club MindShift" class="partner-logo" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Group 3 (Duplicate for seamless loop) -->
+                <div class="partners-group" aria-hidden="true">
+                    <div class="partner-item" title="Cambridge Assessment English">
+                        <img src="partners-logos/cambridge-assessment.svg" alt="Cambridge Assessment English" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-item" title="Groupe OCP">
+                        <img src="partners-logos/ocp-logo.svg" alt="Groupe OCP" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-item" title="IFESSP Institut">
+                        <img src="partners-logos/ifessp-institute.svg" alt="IFESSP Institut" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-item" title="Club MindShift">
+                        <img src="partners-logos/Club.svg" alt="Club MindShift" class="partner-logo" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Group 4 (Duplicate for seamless loop) -->
+                <div class="partners-group" aria-hidden="true">
+                    <div class="partner-item" title="Cambridge Assessment English">
+                        <img src="partners-logos/cambridge-assessment.svg" alt="Cambridge Assessment English" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-item" title="Groupe OCP">
+                        <img src="partners-logos/ocp-logo.svg" alt="Groupe OCP" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-item" title="IFESSP Institut">
+                        <img src="partners-logos/ifessp-institute.svg" alt="IFESSP Institut" class="partner-logo" loading="lazy">
+                    </div>
+                    <div class="partner-item" title="Club MindShift">
+                        <img src="partners-logos/Club.svg" alt="Club MindShift" class="partner-logo" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Gradient Fade Mask -->
+            <div class="partners-gradient-mask partners-gradient-mask-right"></div>
         </div>
     </section>
 

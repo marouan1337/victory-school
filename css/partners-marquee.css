@@ -1,0 +1,180 @@
+/* ==========================================================================
+   Partners & Certifications Marquee Section Styles (Clean & Frameless)
+   ========================================================================== */
+
+.partners-section {
+    position: relative;
+    background: #ffffff;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    padding-top: 2rem;
+    padding-bottom: 2.25rem;
+    overflow: hidden;
+}
+
+@media (min-width: 640px) {
+    .partners-section {
+        padding-top: 2.5rem;
+        padding-bottom: 2.75rem;
+    }
+}
+
+/* Container for marquee */
+.partners-marquee-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    padding: 1rem 0;
+}
+
+/* Gradient Fade Masks on sides */
+.partners-gradient-mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 70px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.partners-gradient-mask-left {
+    left: 0;
+    background: linear-gradient(to right, #ffffff 20%, rgba(255, 255, 255, 0.85) 65%, rgba(255, 255, 255, 0) 100%);
+}
+
+.partners-gradient-mask-right {
+    right: 0;
+    background: linear-gradient(to left, #ffffff 20%, rgba(255, 255, 255, 0.85) 65%, rgba(255, 255, 255, 0) 100%);
+}
+
+@media (min-width: 768px) {
+    .partners-gradient-mask {
+        width: 160px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .partners-gradient-mask {
+        width: 200px;
+    }
+}
+
+/* Continuous Marquee Track */
+.partners-marquee-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    will-change: transform;
+    animation: partnersMarqueeScroll 36s linear infinite;
+}
+
+/* Pause animation immediately on hover, touch, or focus */
+.partners-marquee-container:hover .partners-marquee-track,
+.partners-marquee-track:hover,
+.partners-marquee-track:focus-within,
+.partners-marquee-track:active,
+.partner-item:hover {
+    animation-play-state: paused !important;
+}
+
+/* Partner groups inside track */
+.partners-group {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+    padding-right: 3.5rem;
+    flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+    .partners-group {
+        gap: 5rem;
+        padding-right: 5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .partners-group {
+        gap: 6.5rem;
+        padding-right: 6.5rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .partners-group {
+        gap: 8rem;
+        padding-right: 8rem;
+    }
+}
+
+/* Frameless Partner Logo Item */
+.partner-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0.5rem 0.75rem;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Big, crisp partner logo */
+.partner-logo {
+    height: 68px;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+    filter: grayscale(20%) opacity(0.88);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 640px) {
+    .partner-logo {
+        height: 82px;
+        max-width: 220px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .partner-logo {
+        height: 96px;
+        max-width: 260px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .partner-logo {
+        height: 108px;
+        max-width: 280px;
+    }
+}
+
+/* Hover Effect on Logo */
+.partner-item:hover .partner-logo {
+    filter: grayscale(0%) opacity(1) drop-shadow(0 10px 15px rgba(0, 0, 0, 0.08));
+    transform: scale(1.10);
+}
+
+/* Keyframes for Seamless Marquee */
+@keyframes partnersMarqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    .partners-marquee-track {
+        animation: none;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+    }
+}
