@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualités & Annonces - École Victory</title>
-    <meta name="description" content="Suivez les dernières actualités, annonces de rentrée, événements et informations officielles de l'Établissement Victory à Laâyoune.">
+    <title>Actualites & Annonces - Ecole Victory</title>
+    <meta name="description" content="Suivez les dernieres actualites, annonces de rentree, evenements et informations officielles de l'Etablissement Victory a Laayoune.">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -18,18 +18,21 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: {
-                            800: '#991b1b',
-                            900: '#7f1d1d',
-                        },
-                        amber: {
-                            500: '#f59e0b',
-                            600: '#d97706',
+                        brand: {
+                            50:  '#f9f4f4',
+                            100: '#f1e5e5',
+                            200: '#e0bdbd',
+                            300: '#cc8f8f',
+                            400: '#b25c5c',
+                            500: '#991b1b',
+                            600: '#8a1818',
+                            700: '#731414',
+                            800: '#5c1010',
+                            900: '#460c0c',
                         }
                     },
                     fontFamily: {
-                        'sans': ['Inter', 'sans-serif'],
-                        'roboto': ['Roboto', 'sans-serif']
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
                     }
                 }
             }
@@ -37,154 +40,275 @@
     </script>
     <style>
         .filter-btn {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
         }
         .filter-btn.active {
             background-color: #991b1b;
-            color: white;
-            box-shadow: 0 4px 12px rgba(153, 27, 27, 0.2);
+            color: #ffffff;
+            border-color: #991b1b;
         }
         .announcement-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.25s ease;
+        }
+        .announcement-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px -8px rgba(17, 24, 39, 0.12);
+            border-color: #e5e7eb;
         }
         .announcement-card.hidden {
             display: none !important;
-            opacity: 0;
-            transform: scale(0.95);
+        }
+        .read-more-btn svg {
+            transition: transform 0.2s ease;
+        }
+        .read-more-btn:hover svg {
+            transform: translateX(3px);
         }
     </style>
 </head>
-<body class="font-sans bg-gray-50 flex flex-col min-h-screen">
+<body class="font-sans text-gray-900 bg-gray-50 antialiased flex flex-col min-h-screen">
     
-    <!-- Navbar placeholder dynamically loaded -->
     <div data-include="components/navbar.html"></div>
     
-    <!-- Main Content wrapper -->
     <div id="main-content" class="flex-grow">
-        <!-- Hero Header -->
-        <header class="relative pt-32 pb-20 bg-gradient-to-br from-red-900 to-red-700 text-white overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-full opacity-20 blob-container">
-                <div class="absolute top-1/4 left-0 w-64 h-64 bg-red-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
-                <div class="absolute top-1/3 right-0 w-96 h-96 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
-                <div class="absolute bottom-1/4 left-0 w-80 h-80 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-6000"></div>
-            </div>
-            
-            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div class="inline-block px-4 py-2 mb-6 bg-white/10 backdrop-blur-sm rounded-full border border-white/20" data-aos="fade-down" data-aos-delay="100">
-                    <span class="text-sm font-medium text-white/90">Espace Communication</span>
+        <!-- Page Header -->
+        <header class="pt-32 pb-16 border-b border-gray-200 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div data-aos="fade-up" data-aos-delay="50">
+                    <div class="flex items-center gap-2 text-sm font-medium text-gray-500 mb-3">
+                        <i class="fas fa-home text-xs"></i>
+                        <span>Accueil</span>
+                        <i class="fas fa-chevron-right text-[10px] text-gray-300"></i>
+                        <span class="text-brand-600">Actualites & Annonces</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-4">
+                        Actualites &amp; Annonces
+                    </h1>
+                    <p class="text-lg text-gray-600 max-w-3xl leading-relaxed">
+                        Restez informes des derniers communiques officiels, evenements pedagoques et informations importantes de l'Etablissement Victory.
+                    </p>
                 </div>
-                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight" data-aos="fade-up" data-aos-delay="200">
-                    Actualités & <span class="text-amber-300">Annonces</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-red-100 max-w-4xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="300">
-                    Restez informés sur les événements, les communiqués officiels et la vie scolaire de notre établissement.
-                </p>
             </div>
         </header>
 
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <!-- Filter & Search Section -->
-            <section class="mb-12" data-aos="fade-up">
-                <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-150/40 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                    <!-- Category Pills -->
-                    <div class="flex flex-wrap gap-2.5">
-                        <button class="filter-btn active px-5 py-2.5 rounded-xl text-sm font-semibold border border-gray-200 text-gray-700 bg-white hover:bg-gray-50 hover:text-red-900 transition-all" data-filter="all">
-                            Tout
+        <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <!-- Filters -->
+            <section class="mb-12" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white border border-gray-200 rounded-xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-5">
+                    <div class="flex flex-wrap gap-2">
+                        <button class="filter-btn active px-4 py-2 rounded-lg border border-gray-200 bg-white text-sm font-semibold text-gray-700" data-filter="all">
+                            Tout afficher
                         </button>
-                        <button class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold border border-gray-200 text-gray-700 bg-white hover:bg-gray-50 hover:text-red-900 transition-all" data-filter="Administration">
+                        <button class="filter-btn px-4 py-2 rounded-lg border border-gray-200 bg-white text-sm font-semibold text-gray-700 hover:text-brand-600" data-filter="Administration">
                             Administration
                         </button>
-                        <button class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold border border-gray-200 text-gray-700 bg-white hover:bg-gray-50 hover:text-red-900 transition-all" data-filter="Pédagogie">
-                            Pédagogie
+                        <button class="filter-btn px-4 py-2 rounded-lg border border-gray-200 bg-white text-sm font-semibold text-gray-700 hover:text-brand-600" data-filter="Pedagogie">
+                            Pedagogie
                         </button>
-                        <button class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold border border-gray-200 text-gray-700 bg-white hover:bg-gray-50 hover:text-red-900 transition-all" data-filter="Vie Scolaire">
+                        <button class="filter-btn px-4 py-2 rounded-lg border border-gray-200 bg-white text-sm font-semibold text-gray-700 hover:text-brand-600" data-filter="Vie Scolaire">
                             Vie Scolaire
                         </button>
-                        <button class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold border border-gray-200 text-gray-700 bg-white hover:bg-gray-50 hover:text-red-900 transition-all" data-filter="Événements">
-                            Événements
+                        <button class="filter-btn px-4 py-2 rounded-lg border border-gray-200 bg-white text-sm font-semibold text-gray-700 hover:text-brand-600" data-filter="Evenements">
+                            Evenements
                         </button>
                     </div>
-
-                    <!-- Search Input -->
-                    <div class="relative w-full md:w-80">
-                        <input type="text" id="news-search" placeholder="Rechercher une annonce..." class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-11 pr-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-800 focus:bg-white transition-all shadow-inner">
-                        <svg class="w-5 h-5 absolute left-3.5 top-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
+                    <div class="relative w-full md:w-72">
+                        <input type="text" id="news-search" placeholder="Rechercher une annonce..." class="w-full border border-gray-200 rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-gray-50">
+                        <i class="fas fa-search absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
                     </div>
                 </div>
             </section>
 
             <!-- Featured Announcement -->
-            <section class="mb-12" id="featured-announcement-section" data-aos="fade-up">
-                <div class="announcement-card bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-150/30 grid md:grid-cols-12 hover:shadow-2xl transition-all duration-500 group" data-category="Administration">
-                    <!-- Image -->
-                    <div class="md:col-span-7 h-72 md:h-full relative overflow-hidden bg-gray-900">
-                        <img src="news.jpg" alt="Avis Officiel - Rentrée Scolaire 2026-2027" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-white/10"></div>
-                        <span class="absolute top-4 left-4 bg-gradient-to-r from-red-800 to-red-700 text-white text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg shadow-md z-10">
-                            À la une • Administration
-                        </span>
+            <section class="mb-14" id="featured-announcement-section" data-aos="fade-up" data-aos-delay="150">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-1 h-8 rounded-full bg-brand-500"></div>
+                    <h2 class="text-xl font-bold text-gray-900">A la une</h2>
+                    <span class="ml-auto text-xs font-medium text-gray-500">27 Septembre 2026</span>
+                </div>
+
+                <div class="announcement-card bg-white border border-gray-200 rounded-xl overflow-hidden grid md:grid-cols-12 group" data-category="Evenements">
+                    <div class="md:col-span-7 h-64 md:h-auto relative bg-gray-100 overflow-hidden">
+                        <img src="future-platforme.png" alt="Nouvelle plateforme de cours en ligne" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-white/10"></div>
+                        <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-md bg-white/90 text-blue-800 shadow-sm">
+                                Evenement
+                            </span>
+                            <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-md bg-amber-500 text-white shadow-sm">
+                                En cours
+                            </span>
+                        </div>
                     </div>
 
-                    <!-- Content -->
-                    <div class="md:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
+                    <div class="md:col-span-5 p-7 flex flex-col justify-between">
                         <div>
-                            <div class="text-xs text-gray-400 font-semibold mb-3 flex items-center">
-                                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                </svg>
-                                07 Septembre 2026
+                            <div class="flex items-center gap-2.5 text-xs font-medium text-gray-500 mb-4">
+                                <i class="far fa-calendar-alt text-gray-400"></i>
+                                <span>27 Septembre 2026</span>
+                                <span class="text-gray-300">|</span>
+                                <span class="text-amber-700 font-semibold">Projet en cours de developpement</span>
                             </div>
-                            <h2 class="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-red-800 transition-colors mb-2 line-clamp-2">
-                                Rentrée Scolaire 2026 - 2027 : Démarrage Effectif des Cours
+
+                            <h2 class="text-2xl font-bold text-gray-900 mb-4 leading-snug">
+                                Lancement prochain de la nouvelle plateforme de cours
                             </h2>
-                            <div class="text-sm font-bold text-red-800 mb-3" dir="rtl">
-                                إخبار هام وعاجل : الانطلاقة الفعلية للدراسة برسم الموسم الدراسي
+
+                            <div class="mb-5 p-4 rounded-lg bg-amber-50 border border-amber-200">
+                                <div class="flex items-start gap-3">
+                                    <div class="flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-info-circle text-amber-600"></i>
+                                    </div>
+                                    <p class="text-sm text-amber-900 leading-relaxed">
+                                        Cette plateforme est dediee exclusivement aux <strong>cours et ressources pedagogiques</strong>. Les notes et bulletins restent transmis via les canaux habituels. Le deploiement officiel sera annonce tres prochainement.
+                                    </p>
+                                </div>
                             </div>
-                            <p class="text-gray-600 text-sm sm:text-base mb-6 leading-relaxed line-clamp-4">
-                                La direction de l'Établissement Victory informe l'ensemble des parents et élèves que la rentrée scolaire effective pour l'année 2026-2027 a démarré le lundi 7 septembre 2026. La présence et l'assiduité sont strictement obligatoires...
+
+                            <p class="text-gray-600 leading-relaxed mb-5 text-sm">
+                                L'Ecole Victory met en place un nouvel espace numerique destine aux cours : supports pedagogiques, devoirs, exercices, enregistrements et plannings, accessibles aux eleves et aux parents depuis un ordinateur ou un mobile.
                             </p>
+
+                            <div class="grid grid-cols-2 gap-3 mb-5">
+                                <div class="p-3.5 rounded-lg border border-gray-200 bg-gray-50">
+                                    <i class="fas fa-book-open text-blue-600 mb-2"></i>
+                                    <h5 class="font-semibold text-gray-900 text-sm mb-0.5">Supports de cours</h5>
+                                    <p class="text-xs text-gray-500">PDF et presentations a telecharger</p>
+                                </div>
+                                <div class="p-3.5 rounded-lg border border-gray-200 bg-gray-50">
+                                    <i class="fas fa-pen-square text-emerald-600 mb-2"></i>
+                                    <h5 class="font-semibold text-gray-900 text-sm mb-0.5">Devoirs &amp; exercices</h5>
+                                    <p class="text-xs text-gray-500">Assignations et corrections</p>
+                                </div>
+                                <div class="p-3.5 rounded-lg border border-gray-200 bg-gray-50">
+                                    <i class="fas fa-video text-violet-600 mb-2"></i>
+                                    <h5 class="font-semibold text-gray-900 text-sm mb-0.5">Cours video</h5>
+                                    <p class="text-xs text-gray-500">Enregistrements et tutoriels</p>
+                                </div>
+                                <div class="p-3.5 rounded-lg border border-gray-200 bg-gray-50">
+                                    <i class="fas fa-calendar-alt text-rose-600 mb-2"></i>
+                                    <h5 class="font-semibold text-gray-900 text-sm mb-0.5">Emplois du temps</h5>
+                                    <p class="text-xs text-gray-500">Horaires actualises en temps reel</p>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <!-- Hidden full content for Modal -->
+
                         <div class="hidden-full-content hidden">
-                            <div class="bg-red-50 border-r-4 border-red-800 p-4 rounded-lg mb-6 text-right" dir="rtl">
-                                <h3 class="text-lg font-bold text-red-900 mb-2">إخبار هام وعاجل لكافة الآباء والأمهات والتلاميذ</h3>
-                                <p class="text-gray-800 leading-relaxed mb-3 text-sm sm:text-base">
-                                    تخبر إدارة المؤسسة كافة الآباء والأمهات والتلاميذ أن الانطلاقة الفعلية للدراسة برسم الموسم الدراسي <strong>2026–2027</strong> قد تمت يوم <strong>الاثنين 7 شتنبر 2026</strong>، وفقًا للجدولة الرسمية المعتمدة من طرف وزارة التربية الوطنية والتعليم الأولي والرياضة.
+                            <div class="mb-6 p-4 rounded-lg bg-amber-50 border border-amber-200">
+                                <p class="text-sm font-semibold text-amber-900 mb-1.5">
+                                    Plateforme en cours de finalisation - Mise en ligne tres prochaine
                                 </p>
-                                <p class="text-gray-800 leading-relaxed mb-3 text-sm sm:text-base">
-                                    وعليه، فإن الحضور إلى المؤسسة والالتحاق بالدروس أصبح <strong>ضروريًا</strong> ابتداءً من الآن، ونهيب بجميع التلاميذ الالتزام بالحضور المنتظم واحترام مواقيت الدراسة.
-                                </p>
-                                <p class="text-gray-800 leading-relaxed mb-3 text-sm sm:text-base">
-                                    نؤكد أن أيام الدراسة قد انطلقت فعليًا، وأن التغيب دون مبرر مقبول يؤثر بشكل مباشر على المسار الدراسي للتلميذ وعلى استفادته من الدروس والأنشطة التربوية. لذلك، نرجو من كافة الآباء والأمهات الحرص على إحضار أبنائهم إلى المؤسسة بانتظام وفي الوقت المحدد، وعدم التأخر أو التغيب إلا لسبب مشروع ومبرر.
-                                </p>
-                                <p class="text-red-900 font-bold mt-3 text-sm sm:text-base">
-                                    انطلاقة ناجحة تبدأ بالمواظبة والالتزام • مستقبل أبنائنا مسؤولية مشتركة بين الأسرة والمؤسسة.
+                                <p class="text-sm text-amber-800 leading-relaxed">
+                                    Chers parents, chers eleves - cet outil est reserve aux <strong>cours et supports pedagogiques</strong>. Les notes et bulletins sont transmis selon les modalites habituelles (secretariat, reunions parents-professeurs). Une session de formation sera organisee pour les parents.
                                 </p>
                             </div>
 
-                            <h3 class="text-lg font-bold text-red-900 mt-6 mb-3">Communication Officielle (Version Française)</h3>
-                            <p class="mb-4">Chers parents d'élèves, chers élèves,</p>
+                            <p class="mb-4">Chers parents, chers eleves,</p>
                             <p class="mb-4">
-                                La Direction de l'Établissement Victory Privée (Préscolaire - Primaire - Collège - Lycée) informe l'ensemble de la communauté éducative que le <strong>démarrage effectif des cours pour l'année scolaire 2026-2027 a eu lieu le lundi 7 septembre 2026</strong>, conformément au calendrier officiel établi par le Ministère de l'Éducation Nationale, du Préscolaire et des Sports.
+                                La direction de l'Etablissement Victory annonce la mise en place prochaine de sa nouvelle plateforme numerique pedagogique, entierement dediee aux <strong>cours et ressources educatives en ligne</strong>.
                             </p>
-                            <h4 class="text-md font-bold text-gray-900 mt-4 mb-2">Rappels Essentiels :</h4>
-                            <ul class="list-disc pl-5 mb-4 space-y-2 text-gray-700">
-                                <li><strong>Présence et assiduité :</strong> La présence en classe est obligatoire dès à présent pour l'ensemble des élèves.</li>
-                                <li><strong>Ponctualité :</strong> Le respect rigoureux des horaires d'entrée et de sortie des cours est exigé.</li>
-                                <li><strong>Suivi pédagogique :</strong> Toute absence non justifiée impacte directement le rythme d'apprentissage et le parcours de l'élève.</li>
+                            <p class="mb-4">
+                                Cette plateforme centralise les supports de cours, devoirs, exercices et ressources complementaires dans un espace clair, moderne et accessible sur ordinateur comme sur mobile.
+                            </p>
+
+                            <h3 class="text-base font-bold text-gray-900 mt-6 mb-3">
+                                Contenu disponible sur la plateforme
+                            </h3>
+                            <div class="grid sm:grid-cols-2 gap-3 mb-5 text-sm">
+                                <div class="p-4 rounded-lg border border-gray-200">
+                                    <h5 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                                        <i class="fas fa-book text-blue-600 text-xs"></i> Bibliotheque de cours
+                                    </h5>
+                                    <ul class="space-y-1 text-gray-600 list-disc pl-5 text-xs">
+                                        <li>PDF des lecons par matiere et niveau</li>
+                                        <li>Presentations utilisees en classe</li>
+                                        <li>Fiches de revision et resumes</li>
+                                    </ul>
+                                </div>
+                                <div class="p-4 rounded-lg border border-gray-200">
+                                    <h5 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                                        <i class="fas fa-check-square text-emerald-600 text-xs"></i> Devoirs
+                                    </h5>
+                                    <ul class="space-y-1 text-gray-600 list-disc pl-5 text-xs">
+                                        <li>Publication des devoirs a rendre</li>
+                                        <li>Fiches d'exercices</li>
+                                        <li>Corrections commentees</li>
+                                    </ul>
+                                </div>
+                                <div class="p-4 rounded-lg border border-gray-200">
+                                    <h5 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                                        <i class="fas fa-play-circle text-violet-600 text-xs"></i> Contenus video
+                                    </h5>
+                                    <ul class="space-y-1 text-gray-600 list-disc pl-5 text-xs">
+                                        <li>Cours enregistres pour revision</li>
+                                        <li>Capsules explicatives</li>
+                                        <li>Tutoriels et demonstrations</li>
+                                    </ul>
+                                </div>
+                                <div class="p-4 rounded-lg border border-gray-200">
+                                    <h5 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                                        <i class="fas fa-calendar text-rose-600 text-xs"></i> Planning
+                                    </h5>
+                                    <ul class="space-y-1 text-gray-600 list-disc pl-5 text-xs">
+                                        <li>Emplois du temps a jour</li>
+                                        <li>Calendrier des evaluations</li>
+                                        <li>Rappels importants</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h3 class="text-base font-bold text-gray-900 mt-6 mb-3">
+                                Calendrier de deploiement
+                            </h3>
+                            <ul class="space-y-2.5 mb-5 text-sm">
+                                <li class="flex items-start gap-3">
+                                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-600 text-white text-[10px] font-bold flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-check text-[9px]"></i>
+                                    </span>
+                                    <div>
+                                        <strong class="text-gray-900">Conception &amp; Developpement</strong>
+                                        <span class="text-gray-500"> - Termine</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-500 text-white text-[10px] font-bold flex-shrink-0 mt-0.5">
+                                        <i class="fas fa-circle text-[8px]"></i>
+                                    </span>
+                                    <div>
+                                        <strong class="text-gray-900">Tests internes &amp; ajustements</strong>
+                                        <span class="text-amber-700 font-semibold"> - En cours</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gray-300 text-white text-[10px] font-bold flex-shrink-0 mt-0.5">3</span>
+                                    <div>
+                                        <strong class="text-gray-900">Formation des enseignants</strong>
+                                        <span class="text-gray-500"> - Semaine prochaine</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gray-300 text-white text-[10px] font-bold flex-shrink-0 mt-0.5">4</span>
+                                    <div>
+                                        <strong class="text-gray-900">Lancement officiel &amp; formation parents</strong>
+                                        <span class="text-gray-500"> - Annonce a venir</span>
+                                    </div>
+                                </li>
                             </ul>
-                            <p class="mb-4">
-                                Nous comptons sur la précieuse collaboration de l'ensemble des familles pour assurer une rentrée scolaire studieuse, rigoureuse et épanouissante.
+
+                            <div class="mt-6 p-4 rounded-lg bg-gray-50 border border-gray-200">
+                                <p class="text-sm text-gray-700 leading-relaxed">
+                                    Une adresse e-mail et un guide de connexion personnalises seront remis a chaque famille lors du lancement. Merci de votre confiance.
+                                </p>
+                            </div>
+
+                            <p class="mt-7 font-semibold text-gray-900 text-right">
+                                La Direction Pedagogique &amp; l'Equipe Digitale - Etablissement Victory Prive
                             </p>
-                            <p class="font-semibold text-red-900">La Direction Pédagogique — Établissement Victory Privé</p>
                         </div>
 
-                        <button class="read-more-btn self-start inline-flex items-center text-red-800 font-bold hover:text-red-900 group/btn transition-colors text-sm sm:text-base">
-                            Lire la suite
-                            <svg class="w-4 h-4 ml-1.5 transform group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <button class="read-more-btn self-start inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold shadow-sm transition-colors">
+                            Lire les details du projet
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                             </svg>
                         </button>
@@ -192,266 +316,439 @@
                 </div>
             </section>
 
+            <!-- Grid Title -->
+            <div class="mb-8" data-aos="fade-up">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-1 h-7 rounded-full bg-brand-500"></div>
+                    <h2 class="text-lg font-bold text-gray-900">Toutes les actualites</h2>
+                </div>
+                <p class="text-sm text-gray-500 ml-4">Liste complete des annonces et communications de l'etablissement.</p>
+            </div>
+
             <!-- Announcements Grid -->
             <section class="mb-16">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="announcements-grid">
-                    
-                    <!-- Card 1: Practical Information -->
-                    <div class="announcement-card bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col border border-gray-150/40 group" data-category="Administration">
-                        <div class="h-48 overflow-hidden bg-gray-100 relative">
-                            <img src="annoncements/Rentree-scolaire-2026-2027.png" alt="Rentrée Scolaire 2026-2027" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-3 left-3 bg-red-100 text-red-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="announcements-grid">
+
+                    <!-- Card 1: Annonce Importante Direction 27-09-2026 -->
+                    <div class="announcement-card bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col group" data-category="Administration" data-aos="fade-up" data-aos-delay="50">
+                        <div class="h-48 relative bg-gray-100 overflow-hidden">
+                            <img src="news11.png" alt="Annonce de la direction" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                            <div class="absolute top-3 left-3 flex gap-2">
+                                <span class="px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide rounded-md bg-brand-500 text-white shadow-sm">
+                                    Administration
+                                </span>
+                                <span class="px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide rounded-md bg-white/90 text-brand-700 border border-gray-200 shadow-sm">
+                                    Officiel
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-3 text-xs font-medium text-gray-500">
+                                <i class="far fa-calendar-alt text-gray-400"></i>
+                                <span>27 Septembre 2026</span>
+                                <span class="text-gray-300">|</span>
+                                <span class="text-brand-600 font-semibold">Nouveau</span>
+                            </div>
+                            <h3 class="text-base font-bold text-gray-900 mb-2.5 leading-snug">
+                                Annonce importante de la Direction
+                            </h3>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-grow">
+                                Dispositions importantes pour le bon deroulement de l'annee scolaire. Rappels essentiels concernant la presence, la ponctualite et la communication famille-ecole.
+                            </p>
+                            
+                            <div class="hidden-full-content hidden">
+                                <p class="mb-4">Chers parents, chers eleves,</p>
+                                <p class="mb-4">
+                                    La direction de l'Etablissement Victory vous adresse les presentes dispositions pour le bon deroulement de l'annee scolaire en cours. Nous comptons sur la collaboration de chacun pour assurer un environnement d'apprentissage optimal.
+                                </p>
+
+                                <h3 class="text-base font-bold text-gray-900 mt-6 mb-3">Rappels essentiels</h3>
+                                <ul class="list-disc pl-5 mb-5 space-y-2 text-sm text-gray-700">
+                                    <li><strong>Presence &amp; Ponctualite :</strong> L'assiduite en classe est obligatoire. Toute absence doit etre justifiee sous 48 heures.</li>
+                                    <li><strong>Uniforme &amp; Tenue correcte :</strong> Chaque eleve doit se presenter en uniforme conforme au reglement interieur.</li>
+                                    <li><strong>Communication famille-ecole :</strong> Le carnet de correspondance doit etre consulte et signe chaque semaine par les parents.</li>
+                                    <li><strong>Rencontres :</strong> Les echanges avec les enseignants se font sur rendez-vous pris au secretariat.</li>
+                                </ul>
+
+                                <h3 class="text-base font-bold text-gray-900 mt-6 mb-3">Nous contacter</h3>
+                                <div class="grid sm:grid-cols-2 gap-3 mb-5">
+                                    <div class="p-4 rounded-lg border border-gray-200 bg-gray-50">
+                                        <h5 class="font-bold text-gray-900 mb-1.5 text-sm flex items-center gap-2">
+                                            <i class="fas fa-phone text-brand-500 text-xs"></i> Secretariat
+                                        </h5>
+                                        <p class="text-xs text-gray-500">Lundi au vendredi - 8h30 a 16h00</p>
+                                        <p class="text-sm font-semibold text-brand-600 mt-1">+212 808 595 932</p>
+                                    </div>
+                                    <div class="p-4 rounded-lg border border-gray-200 bg-gray-50">
+                                        <h5 class="font-bold text-gray-900 mb-1.5 text-sm flex items-center gap-2">
+                                            <i class="fas fa-envelope text-brand-500 text-xs"></i> Courriel
+                                        </h5>
+                                        <p class="text-xs text-gray-500">Reponse sous 24h ouvrees</p>
+                                        <p class="text-sm font-semibold text-brand-600 mt-1 break-all">etablissementvictory@gmail.com</p>
+                                    </div>
+                                </div>
+
+                                <p class="mb-4">
+                                    Nous remercions toutes les familles pour leur confiance et leur collaboration. Ensemble, faisons de cette annee une annee de succes pour nos eleves.
+                                </p>
+
+                                <p class="mt-7 font-semibold text-gray-900 text-right">
+                                    La Direction - Etablissement Victory Prive - Laayoune
+                                </p>
+                            </div>
+
+                            <button class="read-more-btn mt-auto self-start inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700">
+                                Lire l'annonce complete
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Rentrée Scolaire Informations Pratiques -->
+                    <div class="announcement-card bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col group" data-category="Administration" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-48 relative bg-gray-100 overflow-hidden">
+                            <img src="annoncements/Rentree-scolaire-2026-2027.png" alt="Rentree scolaire" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide rounded-md bg-brand-100 text-brand-700 shadow-sm">
                                 Administration
                             </span>
                         </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <div class="text-[11px] text-gray-400 font-semibold mb-2 flex items-center">
-                                <i class="far fa-calendar-alt mr-1.5"></i> 15 Juin 2026
+                        <div class="p-5 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-3 text-xs font-medium text-gray-500">
+                                <i class="far fa-calendar-alt text-gray-400"></i>
+                                <span>15 Juin 2026</span>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-900 group-hover:text-red-800 transition-colors mb-3 line-clamp-2">
-                                Rentrée Scolaire 2026 - 2027 : Informations Pratiques
+                            <h3 class="text-base font-bold text-gray-900 mb-2.5 leading-snug">
+                                Rentree Scolaire 2026-2027 : Informations pratiques
                             </h3>
-                            <p class="text-gray-600 text-sm mb-5 leading-relaxed line-clamp-3">
-                                Retrouvez toutes les dates clés de la rentrée scolaire, les listes de fournitures par niveau, ainsi que les horaires et les modalités d'inscription.
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-grow">
+                                Dates cles, listes de fournitures par niveau, horaires et modalites d'inscription pour la rentree 2026-2027.
                             </p>
                             
-                            <!-- Hidden full content for Modal -->
                             <div class="hidden-full-content hidden">
-                                <p class="mb-4">Chers parents, chers élèves,</p>
-                                <p class="mb-4">Nous préparons activement la rentrée scolaire pour l'année 2026-2027 afin d'accueillir nos élèves dans les meilleures conditions d'apprentissage et de sécurité.</p>
-                                <h3 class="text-lg font-bold text-red-900 mt-6 mb-3">Dates de la Rentrée Scolaire</h3>
-                                <ul class="list-disc pl-5 mb-4 space-y-2">
-                                    <li><strong>Mardi 1er Septembre 2026 :</strong> Rentrée administrative et pré-rentrée des enseignants.</li>
-                                    <li><strong>Jeudi 3 Septembre 2026 :</strong> Rentrée des élèves (horaire décalé selon le niveau, communiqué par e-mail).</li>
+                                <p class="mb-4">Chers parents, chers eleves,</p>
+                                <p class="mb-4">Nous preparons la rentree scolaire 2026-2027 afin d'accueillir nos eleves dans les meilleures conditions.</p>
+                                <h3 class="text-base font-bold text-gray-900 mt-6 mb-3">Dates de la rentree</h3>
+                                <ul class="list-disc pl-5 mb-4 space-y-2 text-sm">
+                                    <li><strong>Mardi 1er Septembre 2026 :</strong> Rentree administrative et pre-rentree des enseignants.</li>
+                                    <li><strong>Jeudi 3 Septembre 2026 :</strong> Rentree des eleves selon horaire par niveau.</li>
                                 </ul>
-                                <h3 class="text-lg font-bold text-red-900 mt-6 mb-3">Listes des Fournitures Scolaires</h3>
-                                <p class="mb-4">Les listes complètes des manuels et fournitures par classe sont disponibles en téléchargement sur notre site ou peuvent être retirées au secrétariat de l'école.</p>
-                                <h3 class="text-lg font-bold text-red-900 mt-6 mb-3">Permanence Administrative d'Été</h3>
-                                <p class="mb-4">Le service des inscriptions et de comptabilité assure une permanence de 9h00 à 15h00, du lundi au vendredi, tout au long des mois de juillet et août (sauf fermeture annuelle du 1er au 15 août).</p>
-                                <p class="mb-4">Toute l'équipe de l'École Victory vous souhaite d'excellentes vacances d'été !</p>
+                                <h3 class="text-base font-bold text-gray-900 mt-6 mb-3">Fournitures scolaires</h3>
+                                <p class="mb-4 text-sm">Les listes par classe sont disponibles au secretariat ou en telechargement sur le site.</p>
+                                <h3 class="text-base font-bold text-gray-900 mt-6 mb-3">Permanence administrative</h3>
+                                <p class="mb-4 text-sm">9h00 a 15h00 du lundi au vendredi, juillet et aout (fermeture du 1er au 15 aout).</p>
+                                <p class="text-sm">Toute l'equipe vous souhaite d'excellentes vacances.</p>
                             </div>
 
-                            <button class="read-more-btn mt-auto self-start inline-flex items-center text-sm text-red-800 font-bold hover:text-red-900 group/btn transition-colors">
+                            <button class="read-more-btn mt-auto self-start inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700">
                                 Lire la suite
-                                <i class="fas fa-arrow-right ml-1 text-xs transform group-hover/btn:translate-x-0.5 transition-transform"></i>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
-                    
-                    <!-- Card 2 -->
-                    <div class="announcement-card bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col border border-gray-150/40 group" data-category="Pédagogie">
-                        <div class="h-48 overflow-hidden bg-gray-100 relative">
-                            <img src="annoncements/R%C3%A9sultats_du_Bac_2026.png" alt="Résultats Baccalauréat 2026" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-3 left-3 bg-amber-100 text-amber-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md">
-                                Pédagogie
+
+                    <!-- Card 3: Résultats Bac -->
+                    <div class="announcement-card bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col group" data-category="Pedagogie" data-aos="fade-up" data-aos-delay="150">
+                        <div class="h-48 relative bg-gray-100 overflow-hidden">
+                            <img src="annoncements/R%C3%A9sultats_du_Bac_2026.png" alt="Resultats Bac 2026" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide rounded-md bg-amber-100 text-amber-800 shadow-sm">
+                                Pedagogie
                             </span>
                         </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <div class="text-[11px] text-gray-400 font-semibold mb-2 flex items-center">
-                                <i class="far fa-calendar-alt mr-1.5"></i> 25 Juin 2026
+                        <div class="p-5 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-3 text-xs font-medium text-gray-500">
+                                <i class="far fa-calendar-alt text-gray-400"></i>
+                                <span>25 Juin 2026</span>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-900 group-hover:text-red-800 transition-colors mb-3 line-clamp-2">
-                                Résultats Exceptionnels au Baccalauréat 2026
+                            <h3 class="text-base font-bold text-gray-900 mb-2.5 leading-snug">
+                                Resultats exceptionnels au Baccalaureat 2026
                             </h3>
-                            <p class="text-gray-600 text-sm mb-5 leading-relaxed line-clamp-3">
-                                Nous félicitons chaleureusement nos bacheliers avec un taux de réussite de 99% en Sciences Économiques et de 86% en Sciences Physiques et Chimiques !
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-grow">
+                                Taux de reussite de 99% en Sciences Economiques et 86% en Sciences Physiques et Chimiques.
                             </p>
                             
-                            <!-- Hidden full content for Modal -->
                             <div class="hidden-full-content hidden">
-                                <p class="mb-4">Chers parents, chers élèves,</p>
-                                <p class="mb-4">C'est avec une immense fierté que l'Établissement Victory annonce les résultats exceptionnels de nos élèves de la Terminale aux examens du Baccalauréat National pour la session de Juin 2026.</p>
-                                <p class="mb-4">Nos élèves ont brillamment illustré les valeurs de travail et d'excellence de notre établissement :</p>
-                                <ul class="list-disc pl-5 mb-4 space-y-2">
-                                    <li><strong>Filière Sciences Économiques :</strong> Un taux de réussite exceptionnel de <strong>99%</strong> pour nos élèves !</li>
-                                    <li><strong>Filière Sciences Physiques et Chimiques :</strong> Un taux de réussite exceptionnel de <strong>86%</strong> pour nos élèves !</li>
+                                <p class="mb-4">Chers parents, chers eleves,</p>
+                                <p class="mb-4">L'Etablissement Victory annonce les resultats exceptionnels de nos eleves de Terminale au Baccalaureat, session de Juin 2026.</p>
+                                <ul class="list-disc pl-5 mb-4 space-y-2 text-sm">
+                                    <li><strong>Sciences Economiques :</strong> 99% de reussite.</li>
+                                    <li><strong>Sciences Physiques et Chimiques :</strong> 86% de reussite.</li>
                                 </ul>
-                                <p class="mb-4">Ces résultats témoignent de l'engagement constant de notre équipe pédagogique et des efforts acharnés de nos élèves tout au long de leur parcours scolaire. Nous tenons à féliciter chaleureusement tous nos nouveaux bacheliers pour cette réussite remarquable qui leur ouvre les portes des études supérieures.</p>
-                                <p class="mb-4">Bravo à tous et bonne continuation dans votre parcours académique !</p>
+                                <p class="mb-4 text-sm">Ces results temoignent de l'engagement de l'equipe pedagogique et des efforts des eleves. Felicitations a tous nos nouveaux bacheliers !</p>
+                                <p class="text-sm">Bonne continuation dans vos etudes superieures.</p>
                             </div>
 
-                            <button class="read-more-btn mt-auto self-start inline-flex items-center text-sm text-red-800 font-bold hover:text-red-900 group/btn transition-colors">
+                            <button class="read-more-btn mt-auto self-start inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700">
                                 Lire la suite
-                                <i class="fas fa-arrow-right ml-1 text-xs transform group-hover/btn:translate-x-0.5 transition-transform"></i>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Card 3 -->
-                    <div class="announcement-card bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col border border-gray-150/40 group" data-category="Vie Scolaire">
-                        <div class="h-48 overflow-hidden bg-gray-100 relative">
-                            <img src="new_images/547485102_794041689888774_5734702051269881084_n.jpg" alt="Tournoi Sportif" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-3 left-3 bg-green-100 text-green-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md">
+                    <!-- Card 4: Démarrage Effectif Cours (news.jpg) -->
+                    <div class="announcement-card bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col group" data-category="Administration" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-48 relative bg-gray-100 overflow-hidden">
+                            <img src="news.jpg" alt="Demarrage effectif des cours" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent"></div>
+                            <div class="absolute top-3 left-3 flex gap-2">
+                                <span class="px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide rounded-md bg-brand-500 text-white shadow-sm">
+                                    Administration
+                                </span>
+                                <span class="px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide rounded-md bg-white/90 text-brand-700 border border-gray-200 shadow-sm">
+                                    Officiel
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-3 text-xs font-medium text-gray-500">
+                                <i class="far fa-calendar-alt text-gray-400"></i>
+                                <span>07 Septembre 2026</span>
+                            </div>
+                            <h3 class="text-base font-bold text-gray-900 mb-2.5 leading-snug">
+                                Rentree Scolaire 2026-2027 : Demarrage effectif des cours
+                            </h3>
+                            <p class="text-xs font-semibold text-brand-600 mb-2.5 p-2 rounded bg-brand-50 border border-brand-100 text-right" dir="rtl">
+                                الانطلاقة الفعلية للدراسة برسم الموسم الدراسي
+                            </p>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-grow">
+                                La rentree effective a commence le lundi 7 septembre 2026. Presence et assiduite obligatoires pour tous les niveaux.
+                            </p>
+                            
+                            <div class="hidden-full-content hidden">
+                                <div class="bg-brand-50 border-r-4 border-brand-500 p-4 rounded-lg mb-6 text-right" dir="rtl">
+                                    <h3 class="text-base font-bold text-brand-700 mb-2">
+                                        اخبار هام وعاجل لجميع الاباء والامهات والتلاميذ
+                                    </h3>
+                                    <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                                        تخبر ادارة المؤسسة جميع الاباء والامهات والتلاميذ ان الانطلاقة الفعلية للدراسة برسم الموسم الدراسي <strong>2026-2027</strong> قد تمت يوم <strong>الاثنين 7 شتنبر 2026</strong>.
+                                    </p>
+                                    <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                                        الحضور والالتحاق بالدروس اصبح ضروريا ابتداء من الان. يجب احترام مواقيت الدراسة وعدم التغيب الا لسبب مقبول.
+                                    </p>
+                                    <p class="text-sm font-bold text-brand-700 mt-2">
+                                        انطلاقة ناجحة تبدأ بالمواظبة والالتزام. مستقبل ابنائنا مسؤولية مشتركة.
+                                    </p>
+                                </div>
+
+                                <h3 class="text-base font-bold text-gray-900 mt-6 mb-3">Communication officielle</h3>
+                                <p class="mb-4 text-sm">Chers parents, chers eleves,</p>
+                                <p class="mb-4 text-sm">
+                                    La Direction informe que le <strong>demarrage effectif des cours pour l'annee 2026-2027 a eu lieu le lundi 7 septembre 2026</strong>, selon le calendrier officiel du Ministere.
+                                </p>
+                                <h4 class="font-bold text-gray-900 mt-4 mb-2 text-sm">Rappels essentiels</h4>
+                                <ul class="list-disc pl-5 mb-4 space-y-2 text-sm text-gray-700">
+                                    <li><strong>Presence :</strong> Obligatoire des maintenant pour tous les eleves.</li>
+                                    <li><strong>Ponctualite :</strong> Respect rigoureux des horaires d'entree et de sortie.</li>
+                                    <li><strong>Suivi pedagogique :</strong> Toute absence injustifiee impacte l'apprentissage.</li>
+                                </ul>
+                                <p class="mb-4 text-sm">Nous comptons sur la collaboration des familles pour une rentree studieuse et rigoureuse.</p>
+                                <p class="font-semibold text-gray-900 mt-6 text-right text-sm">
+                                    La Direction Pedagogique - Etablissement Victory Prive
+                                </p>
+                            </div>
+
+                            <button class="read-more-btn mt-auto self-start inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700">
+                                Lire l'annonce complete
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Tournoi Sportif -->
+                    <div class="announcement-card bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col group" data-category="Vie Scolaire" data-aos="fade-up" data-aos-delay="250">
+                        <div class="h-48 relative bg-gray-100 overflow-hidden">
+                            <img src="new_images/547485102_794041689888774_5734702051269881084_n.jpg" alt="Tournoi sportif" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide rounded-md bg-emerald-100 text-emerald-800 shadow-sm">
                                 Vie Scolaire
                             </span>
                         </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <div class="text-[11px] text-gray-400 font-semibold mb-2 flex items-center">
-                                <i class="far fa-calendar-alt mr-1.5"></i> 08 Juin 2026
+                        <div class="p-5 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-3 text-xs font-medium text-gray-500">
+                                <i class="far fa-calendar-alt text-gray-400"></i>
+                                <span>08 Juin 2026</span>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-900 group-hover:text-red-800 transition-colors mb-3 line-clamp-2">
-                                Grand Tournoi Sportif Inter-Écoles 2026
+                            <h3 class="text-base font-bold text-gray-900 mb-2.5 leading-snug">
+                                Grand Tournoi Sportif Inter-Ecoles 2026
                             </h3>
-                            <p class="text-gray-600 text-sm mb-5 leading-relaxed line-clamp-3">
-                                Nos équipes scolaires de football et de basketball participeront au grand tournoi régional ce week-end. Venez nombreux encourager nos joueurs !
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-grow">
+                                Nos equipes de football et basketball participent au tournoi regional. Venez nombreux encourager nos joueurs.
                             </p>
                             
-                            <!-- Hidden full content for Modal -->
                             <div class="hidden-full-content hidden">
-                                <p class="mb-4">Ce week-end, le sport est à l'honneur à l'École Victory ! Nos sélections de football (minimes garçons) et de basketball (cadettes filles) vont défendre nos couleurs lors de la 12ème édition du Tournoi Sportif Inter-Écoles.</p>
-                                <h3 class="text-lg font-bold text-red-900 mt-6 mb-3">Planning des Matchs</h3>
-                                <ul class="list-disc pl-5 mb-4 space-y-1">
-                                    <li><strong>Samedi 9h30 :</strong> Match d'ouverture en Basket (Victory contre Lycée Excellence).</li>
-                                    <li><strong>Samedi 11h00 :</strong> Quart de finale Football (Victory contre Collège du Sud).</li>
-                                    <li><strong>Dimanche :</strong> Phases finales et remise des prix à partir de 14h00.</li>
+                                <p class="mb-4 text-sm">Ce week-end, nos selections de football (minimes garcons) et de basketball (cadettes filles) defendent nos couleurs au Tournoi Sportif Inter-Ecoles.</p>
+                                <h3 class="text-base font-bold text-gray-900 mt-5 mb-3">Planning</h3>
+                                <ul class="list-disc pl-5 mb-4 space-y-1.5 text-sm">
+                                    <li><strong>Samedi 9h30 :</strong> Match d'ouverture Basket vs Lycee Excellence.</li>
+                                    <li><strong>Samedi 11h00 :</strong> Quart de finale Football vs College du Sud.</li>
+                                    <li><strong>Dimanche 14h00 :</strong> Phases finales et remise des prix.</li>
                                 </ul>
-                                <h3 class="text-lg font-bold text-red-900 mt-6 mb-3">Venir encourager l'école</h3>
-                                <p class="mb-4">Des navettes gratuites au départ de l'école seront organisées pour emmener les élèves et les parents supporters. Venez habillés en rouge et blanc pour former le plus grand kop de supporters !</p>
-                                <p class="mb-4">Allez Victory !</p>
+                                <h3 class="text-base font-bold text-gray-900 mt-5 mb-3">Supporters</h3>
+                                <p class="mb-4 text-sm">Des navettes gratuites au depart de l'ecole sont organisees. Venez en tenue rouge et blanc !</p>
+                                <p class="text-sm font-semibold text-brand-600">Allez Victory !</p>
                             </div>
 
-                            <button class="read-more-btn mt-auto self-start inline-flex items-center text-sm text-red-805 font-bold hover:text-red-900 group/btn transition-colors">
+                            <button class="read-more-btn mt-auto self-start inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700">
                                 Lire la suite
-                                <i class="fas fa-arrow-right ml-1 text-xs transform group-hover/btn:translate-x-0.5 transition-transform"></i>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Card 4 -->
-                    <div class="announcement-card bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col border border-gray-150/40 group" data-category="Administration">
-                        <div class="h-48 overflow-hidden bg-gray-100 relative">
-                            <img src="new_images/548192888_794046509888292_2656955329768801585_n.jpg" alt="Réunion parents-profs" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-3 left-3 bg-red-100 text-red-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md">
+                    <!-- Card 6: Réunion Parents-Profs -->
+                    <div class="announcement-card bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col group" data-category="Administration" data-aos="fade-up" data-aos-delay="300">
+                        <div class="h-48 relative bg-gray-100 overflow-hidden">
+                            <img src="new_images/548192888_794046509888292_2656955329768801585_n.jpg" alt="Reunion parents enseignants" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide rounded-md bg-brand-100 text-brand-700 shadow-sm">
                                 Administration
                             </span>
                         </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <div class="text-[11px] text-gray-400 font-semibold mb-2 flex items-center">
-                                <i class="far fa-calendar-alt mr-1.5"></i> 02 Juin 2026
+                        <div class="p-5 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-3 text-xs font-medium text-gray-500">
+                                <i class="far fa-calendar-alt text-gray-400"></i>
+                                <span>02 Juin 2026</span>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-900 group-hover:text-red-800 transition-colors mb-3 line-clamp-2">
-                                Réunion Parents-Enseignants du 3ème Trimestre
+                            <h3 class="text-base font-bold text-gray-900 mb-2.5 leading-snug">
+                                Reunion Parents-Enseignants du 3eme Trimestre
                             </h3>
-                            <p class="text-gray-600 text-sm mb-5 leading-relaxed line-clamp-3">
-                                Les réunions individuelles de bilan scolaire de fin d'année se tiendront le samedi 20 juin. Prenez rendez-vous via votre portail parent.
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-grow">
+                                Rencontres individuelles de bilan de fin d'annee le samedi 20 juin. Prendre rendez-vous sur le portail parent.
                             </p>
                             
-                            <!-- Hidden full content for Modal -->
                             <div class="hidden-full-content hidden">
-                                <p class="mb-4">Chers parents,</p>
-                                <p class="mb-4">Afin de faire le bilan du troisième trimestre et de l'année scolaire écoulée, nous vous invitons à participer aux rencontres individuelles parents-enseignants qui auront lieu le <strong>samedi 20 juin 2026 de 8h30 à 13h00</strong>.</p>
-                                <h3 class="text-lg font-bold text-red-900 mt-6 mb-3">Modalités de rendez-vous</h3>
-                                <p class="mb-4">Pour éviter de longues attentes, les rendez-vous doivent être fixés préalablement sur notre portail en ligne ("Portail Parent"). Les réservations ouvriront le lundi 8 juin à 9h00.</p>
-                                <p class="mb-4">Chaque entretien individuel durera environ 10 minutes. C'est l'occasion idéale d'échanger avec le professeur principal et les enseignants de matières sur l'orientation et le passage au niveau supérieur.</p>
-                                <p class="mb-4">Nous vous remercions pour votre collaboration essentielle à la réussite scolaire de vos enfants.</p>
+                                <p class="mb-4 text-sm">Chers parents,</p>
+                                <p class="mb-4 text-sm">
+                                    Nous vous invitons aux rencontres individuelles parents-enseignants du <strong>samedi 20 juin 2026, de 8h30 a 13h00</strong>, pour le bilan du troisieme trimestre.
+                                </p>
+                                <h3 class="text-base font-bold text-gray-900 mt-5 mb-3">Modalites</h3>
+                                <p class="mb-4 text-sm">
+                                    Les rendez-vous se prennent sur le portail parent. Ouverture le lundi 8 juin a 9h00. Chaque entretien dure environ 10 minutes.
+                                </p>
+                                <p class="text-sm">Merci pour votre collaboration a la reussite scolaire de vos enfants.</p>
                             </div>
 
-                            <button class="read-more-btn mt-auto self-start inline-flex items-center text-sm text-red-805 font-bold hover:text-red-900 group/btn transition-colors">
+                            <button class="read-more-btn mt-auto self-start inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700">
                                 Lire la suite
-                                <i class="fas fa-arrow-right ml-1 text-xs transform group-hover/btn:translate-x-0.5 transition-transform"></i>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Card 5 -->
-                    <div class="announcement-card bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col border border-gray-150/40 group" data-category="Pédagogie">
-                        <div class="h-48 overflow-hidden bg-gray-100 relative">
-                            <img src="new_images/548192407_794044173221859_7830027674729400421_n.jpg" alt="Projet Science" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-3 left-3 bg-amber-100 text-amber-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md">
-                                Pédagogie
+                    <!-- Card 7: Semaine de la Science -->
+                    <div class="announcement-card bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col group" data-category="Pedagogie" data-aos="fade-up" data-aos-delay="350">
+                        <div class="h-48 relative bg-gray-100 overflow-hidden">
+                            <img src="new_images/548192407_794044173221859_7830027674729400421_n.jpg" alt="Semaine de la science" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide rounded-md bg-amber-100 text-amber-800 shadow-sm">
+                                Pedagogie
                             </span>
                         </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <div class="text-[11px] text-gray-400 font-semibold mb-2 flex items-center">
-                                <i class="far fa-calendar-alt mr-1.5"></i> 28 Mai 2026
+                        <div class="p-5 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-3 text-xs font-medium text-gray-500">
+                                <i class="far fa-calendar-alt text-gray-400"></i>
+                                <span>28 Mai 2026</span>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-900 group-hover:text-red-800 transition-colors mb-3 line-clamp-2">
+                            <h3 class="text-base font-bold text-gray-900 mb-2.5 leading-snug">
                                 Semaine de la Science et de l'Innovation
                             </h3>
-                            <p class="text-gray-600 text-sm mb-5 leading-relaxed line-clamp-3">
-                                Exposition des projets scientifiques et créatifs de nos élèves de la 6ème à la Terminale. Ateliers et démonstrations en direct !
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-grow">
+                                Exposition de projets scientifiques et creatifs de nos eleves de la 6eme a la Terminale. Ateliers et demonstrations en direct.
                             </p>
                             
-                            <!-- Hidden full content for Modal -->
                             <div class="hidden-full-content hidden">
-                                <p class="mb-4">Nous sommes fiers de vous inviter à l'événement scientifique de l'année à l'École Victory : la Semaine de la Science et de l'Innovation, qui se déroulera du <strong>2 au 5 juin 2026</strong> dans le grand hall et les laboratoires.</p>
-                                <h3 class="text-lg font-bold text-red-900 mt-6 mb-3">Au programme cette semaine :</h3>
-                                <ul class="list-disc pl-5 mb-4 space-y-1">
-                                    <li><strong>Exposition de Projets :</strong> Plus de 35 stands conçus par nos collégiens et lycéens sur l'écologie, l'intelligence artificielle et la physique amusante.</li>
-                                    <li><strong>Concours de Robotique :</strong> Compétition de robots suiveurs de lignes construits en ateliers.</li>
-                                    <li><strong>Conférences :</strong> Intervention d'enseignants-chercheurs universitaires sur l'avenir des énergies renouvelables.</li>
+                                <p class="mb-4 text-sm">
+                                    La Semaine de la Science et de l'Innovation se deroule du <strong>2 au 5 juin 2026</strong> dans le grand hall et les laboratoires.
+                                </p>
+                                <h3 class="text-base font-bold text-gray-900 mt-5 mb-3">Programme</h3>
+                                <ul class="list-disc pl-5 mb-4 space-y-1.5 text-sm">
+                                    <li><strong>Exposition :</strong> Plus de 35 stands (ecologie, IA, physique amusante).</li>
+                                    <li><strong>Concours de Robotique :</strong> Robots suiveurs de lignes.</li>
+                                    <li><strong>Conferences :</strong> Enseignants-chercheurs sur les energies renouvelables.</li>
                                 </ul>
-                                <p class="mb-4">Les parents et visiteurs extérieurs sont admis tous les après-midi de 14h30 à 17h00. Venez encourager la créativité et l'esprit scientifique de nos jeunes chercheurs !</p>
+                                <p class="text-sm">Parents et visiteurs admis l'apres-midi de 14h30 a 17h00.</p>
                             </div>
 
-                            <button class="read-more-btn mt-auto self-start inline-flex items-center text-sm text-red-805 font-bold hover:text-red-900 group/btn transition-colors">
+                            <button class="read-more-btn mt-auto self-start inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700">
                                 Lire la suite
-                                <i class="fas fa-arrow-right ml-1 text-xs transform group-hover/btn:translate-x-0.5 transition-transform"></i>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
+
                 </div>
             </section>
         </main>
     </div>
 
-    <!-- Announcement Detail Lightbox Modal -->
+    <!-- Modal -->
     <div id="announcement-modal" class="fixed inset-0 z-[10000] hidden items-center justify-center p-4">
-        <!-- Backdrop -->
-        <div id="modal-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0"></div>
+        <div id="modal-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-200 opacity-0"></div>
         
-        <!-- Modal Wrapper Card -->
-        <div id="modal-card" class="bg-white max-w-2xl w-full rounded-2xl shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300 flex flex-col max-h-[85vh] z-10">
-            <!-- Modal Header / Image Area -->
-            <div class="h-48 sm:h-64 relative bg-gray-100 flex-shrink-0">
-                <img id="modal-image" src="" alt="Détail" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <button id="modal-close" class="absolute top-4 right-4 text-white bg-black/40 hover:bg-black/70 rounded-full w-9 h-9 flex items-center justify-center transition-colors focus:outline-none" aria-label="Fermer la modal">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        <div id="modal-card" class="bg-white w-full max-w-2xl rounded-xl shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-250 flex flex-col max-h-[85vh] z-10 border border-gray-100">
+            <div class="h-56 relative bg-gray-100 flex-shrink-0 overflow-hidden">
+                <img id="modal-image" src="" alt="Detail" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                <button id="modal-close" class="absolute top-4 right-4 text-white bg-black/40 hover:bg-black/70 rounded-full w-9 h-9 flex items-center justify-center transition-colors focus:outline-none" aria-label="Fermer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
                 </button>
-                <div class="absolute bottom-4 left-6">
-                    <span id="modal-category" class="bg-red-800 text-white text-xxs font-bold uppercase tracking-wider px-2.5 py-1 rounded">
-                        ADMINISTRATION
+                <div class="absolute bottom-4 left-5 right-5 flex items-end justify-between gap-3">
+                    <span id="modal-category" class="px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-md bg-brand-500 text-white">
+                        Actualite
+                    </span>
+                    <span id="modal-date-text" class="px-2.5 py-1 rounded-md bg-black/40 backdrop-blur text-white text-xs font-medium">
+                        Date
                     </span>
                 </div>
             </div>
 
-            <!-- Modal Content Area -->
-            <div class="p-6 sm:p-8 overflow-y-auto flex-grow">
-                <div class="text-xs text-gray-400 font-semibold mb-2 flex items-center" id="modal-date">
-                    <i class="far fa-calendar-alt mr-1.5"></i> 15 Juin 2026
-                </div>
+            <div class="p-7 overflow-y-auto flex-grow">
                 <h2 id="modal-title" class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 leading-snug">
-                    Titre de l'annonce
+                    Titre
                 </h2>
-                <div id="modal-body" class="text-gray-600 leading-relaxed text-sm sm:text-base space-y-4">
-                    <!-- Dynamic paragraphs loaded here -->
+                <div class="w-12 h-0.5 bg-brand-500 rounded mb-6"></div>
+                <div id="modal-body" class="text-gray-700 leading-relaxed text-sm space-y-4">
                 </div>
             </div>
             
-            <!-- Modal Footer -->
-            <div class="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-100 flex-shrink-0">
-                <button id="modal-close-footer" class="px-5 py-2 bg-gray-200 text-gray-700 font-semibold text-sm rounded-lg hover:bg-gray-300 transition-colors focus:outline-none">
+            <div class="px-7 py-4 flex justify-end items-center gap-3 border-t border-gray-100 bg-gray-50 flex-shrink-0">
+                <div class="mr-auto hidden sm:flex items-center gap-2 text-xs text-gray-400">
+                    <i class="fas fa-check-circle text-brand-500"></i>
+                    <span>Communication officielle</span>
+                </div>
+                <button id="modal-close-footer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold shadow-sm transition-colors">
                     Fermer
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Footer placehold dynamically loaded -->
-    <!-- Footer is injected automatically by components.js includeFooter() -->
-
-    <!-- Vendor Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/components.js"></script>
 
-    <!-- Page Specific Script -->
     <script>
-        // Page specific interactions
         document.addEventListener('DOMContentLoaded', function() {
-            // Category Filter Logic
             const filterBtns = document.querySelectorAll('.filter-btn');
             const cards = document.querySelectorAll('.announcement-card');
             const searchInput = document.getElementById('news-search');
@@ -461,17 +758,15 @@
             function applyFilters() {
                 cards.forEach(card => {
                     const category = card.getAttribute('data-category');
-                    const title = card.querySelector('h2, h3').textContent.toLowerCase();
-                    const description = card.querySelector('p').textContent.toLowerCase();
-                    
+                    const titleEl = card.querySelector('h2, h3');
+                    const descEl = card.querySelector('p');
+                    if (!titleEl || !descEl) return;
+                    const title = titleEl.textContent.toLowerCase();
+                    const description = descEl.textContent.toLowerCase();
                     const matchesCategory = (activeCategory === 'all' || category === activeCategory);
                     const matchesSearch = (title.includes(searchQuery) || description.includes(searchQuery));
-
                     if (matchesCategory && matchesSearch) {
                         card.classList.remove('hidden');
-                        // Trigger AOS animation refresh
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
                     } else {
                         card.classList.add('hidden');
                     }
@@ -494,13 +789,12 @@
                 });
             }
 
-            // Modal Display Logic
             const modal = document.getElementById('announcement-modal');
             const modalBackdrop = document.getElementById('modal-backdrop');
             const modalCard = document.getElementById('modal-card');
             const modalImage = document.getElementById('modal-image');
             const modalCategory = document.getElementById('modal-category');
-            const modalDate = document.getElementById('modal-date');
+            const modalDateText = document.getElementById('modal-date-text');
             const modalTitle = document.getElementById('modal-title');
             const modalBody = document.getElementById('modal-body');
             const modalCloseBtns = [
@@ -512,36 +806,34 @@
             function openModal(cardElement) {
                 const img = cardElement.querySelector('img').src;
                 const cat = cardElement.getAttribute('data-category');
-                const date = cardElement.querySelector('.text-xs, .text-\\[11px\\]').textContent.trim();
-                const title = cardElement.querySelector('h2, h3').textContent.trim();
-                const fullContentHtml = cardElement.querySelector('.hidden-full-content').innerHTML;
+                const dateEl = cardElement.querySelector('.text-xs');
+                const rawDate = dateEl ? dateEl.textContent.trim() : '';
+                const titleEl = cardElement.querySelector('h2, h3');
+                const title = titleEl ? titleEl.textContent.trim() : '';
+                const fullContentHtmlEl = cardElement.querySelector('.hidden-full-content');
+                const fullContentHtml = fullContentHtmlEl ? fullContentHtmlEl.innerHTML : '<p>Contenu a venir.</p>';
 
-                // Set values
                 modalImage.src = img;
-                modalCategory.textContent = cat;
-                modalDate.innerHTML = `<i class="far fa-calendar-alt mr-1.5"></i> ${date}`;
+                modalCategory.textContent = cat ? cat.toUpperCase() : 'ACTUALITE';
+                const cleanDate = rawDate.match(/\d{1,2}\s+\w+\s+\d{4}/);
+                modalDateText.textContent = cleanDate ? cleanDate[0] : rawDate.split('|')[0].trim();
                 modalTitle.textContent = title;
                 modalBody.innerHTML = fullContentHtml;
 
-                // Adjust category badge color
-                modalCategory.className = "text-white text-xxs font-bold uppercase tracking-wider px-2.5 py-1 rounded";
-                if (cat === "Administration") modalCategory.classList.add("bg-red-800");
-                else if (cat === "Pédagogie") modalCategory.classList.add("bg-amber-600");
-                else if (cat === "Vie Scolaire") modalCategory.classList.add("bg-green-700");
-                else if (cat === "Événements") modalCategory.classList.add("bg-blue-800");
+                modalCategory.className = 'px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-md text-white';
+                if (cat === 'Administration') modalCategory.classList.add('bg-brand-500');
+                else if (cat === 'Pedagogie') modalCategory.classList.add('bg-amber-600');
+                else if (cat === 'Vie Scolaire') modalCategory.classList.add('bg-emerald-700');
+                else if (cat === 'Evenements') modalCategory.classList.add('bg-blue-800');
+                else modalCategory.classList.add('bg-brand-500');
 
-                // Show modal structure
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
-                
-                // Trigger transition
                 setTimeout(() => {
                     modalBackdrop.style.opacity = '1';
                     modalCard.style.opacity = '1';
                     modalCard.style.transform = 'scale(1)';
-                }, 50);
-
-                // Prevent body scroll
+                }, 20);
                 document.body.style.overflow = 'hidden';
             }
 
@@ -549,55 +841,29 @@
                 modalBackdrop.style.opacity = '0';
                 modalCard.style.opacity = '0';
                 modalCard.style.transform = 'scale(0.95)';
-                
                 setTimeout(() => {
                     modal.classList.remove('flex');
                     modal.classList.add('hidden');
                     document.body.style.overflow = '';
-                }, 300);
+                }, 250);
             }
 
-            // Click triggers
             cards.forEach(card => {
                 const readMoreBtn = card.querySelector('.read-more-btn');
                 const titleElement = card.querySelector('h2, h3');
-                const imageContainer = card.querySelector('.h-64, .h-48');
-
-                // Read more btn click
-                if (readMoreBtn) {
-                    readMoreBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        openModal(card);
-                    });
-                }
-
-                // Card title click
-                if (titleElement) {
-                    titleElement.style.cursor = 'pointer';
-                    titleElement.addEventListener('click', () => openModal(card));
-                }
-
-                // Card image click
-                if (imageContainer) {
-                    imageContainer.style.cursor = 'pointer';
-                    imageContainer.addEventListener('click', () => openModal(card));
-                }
+                const imageContainer = card.querySelector('.h-48, .h-52, .h-56, .h-64, .h-72, .h-80, .h-96');
+                if (readMoreBtn) readMoreBtn.addEventListener('click', (e) => { e.stopPropagation(); openModal(card); });
+                if (titleElement) { titleElement.style.cursor = 'pointer'; titleElement.addEventListener('click', () => openModal(card)); }
+                if (imageContainer) { imageContainer.style.cursor = 'pointer'; imageContainer.addEventListener('click', () => openModal(card)); }
             });
 
-            // Close listeners
-            modalCloseBtns.forEach(btn => {
-                if (btn) btn.addEventListener('click', closeModal);
-            });
-
+            modalCloseBtns.forEach(btn => { if (btn) btn.addEventListener('click', closeModal); });
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
-                    closeModal();
-                }
+                if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) closeModal();
             });
         });
     </script>
 
-    <!-- Cambridge Floating Ad -->
     <script src="js/cambridge-float.js"></script>
 </body>
 </html>
